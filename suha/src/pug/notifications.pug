@@ -1,0 +1,131 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        // Header Area
+        .header-area#headerArea
+            .container.h-100.d-flex.align-items-center.justify-content-between
+                // Back Button
+                .back-button
+                    a(href="home.html")
+                        svg(xmlns="http://www.w3.org/2000/svg", width="24", height="24", fill="currentColor", class="bi bi-arrow-left", viewBox="0 0 16 16")
+                            path(fill-rule="evenodd", d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z")
+
+                // Page Title
+                .page-heading
+                    h6.mb-0 Notifications
+
+                // Navbar Toggler
+                .suha-navbar-toggler.d-flex.justify-content-between.flex-wrap#suhaNavbarToggler
+                    span
+                    span
+                    span
+
+        include inc/sidenav.pug
+
+        // Page Content Wrapper
+        .page-content-wrapper
+            .container
+                // Section Heading
+                .section-heading.d-flex.align-items-center.pt-3.justify-content-between
+                    h6 Notification(s)
+                    a.notification-clear-all.text-secondary(href="#") Clear All
+
+                // Notifications Area
+                .notification-area.pb-2
+                    .list-group
+                        // Single Notification
+                        a.list-group-item.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-alarm
+                            .noti-info
+                                h6.mb-0 Suha just uploaded a new product!
+                                span 12 min ago
+
+                        // Single Notification
+                        a.list-group-item.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-dropbox
+                            .noti-info
+                                h6.mb-0 Black Friday Deals in One Place
+                                span 49 min ago
+
+                        // Single Notification
+                        a.list-group-item.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-reply
+                            .noti-info
+                                h6.mb-0 Share your experience, it's matters!
+                                span 58 min ago
+
+                        // Single Notification
+                        a.list-group-item.readed.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-ship
+                            .noti-info
+                                h6.mb-0 Your order has been delivered.
+                                span Yesterday
+
+                        // Single Notification
+                        a.list-group-item.readed.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-heart-filled
+                            .noti-info
+                                h6.mb-0 Your wishlist is updated.
+                                span 2 days ago
+
+                        // Single Notification
+                        a.list-group-item.readed.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-thunder
+                            .noti-info
+                                h6.mb-0 11% Price drop! Hurry up.
+                                span 2 days ago
+
+                        // Single Notification
+                        a.list-group-item.readed.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-offer
+                            .noti-info
+                                h6.mb-0 Use 30% Discount Code
+                                span 3 days ago
+
+                        // Single Notification
+                        a.list-group-item.readed.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-ship
+                            .noti-info
+                                h6.mb-0 Your order has been delivered.
+                                span Yesterday
+
+                        // Single Notification
+                        a.list-group-item.readed.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-heart-filled
+                            .noti-info
+                                h6.mb-0 Your wishlist is updated.
+                                span 2 days ago
+
+                        // Single Notification
+                        a.list-group-item.readed.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-thunder
+                            .noti-info
+                                h6.mb-0 11% Price drop! Hurry up.
+                                span 2 days ago
+
+                        // Single Notification
+                        a.list-group-item.readed.d-flex.align-items-center(href="notification-details.html")
+                            span.noti-icon
+                                i.lni.lni-offer
+                            .noti-info
+                                h6.mb-0 Use 30% Discount Code
+                                span 3 days ago
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug

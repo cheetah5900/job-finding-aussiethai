@@ -1,0 +1,68 @@
+// Sidenav Black Overlay
+.sidenav-black-overlay
+
+// Side Nav Wrapper
+.suha-sidenav-wrapper#sidenavWrapper
+    // Sidenav Profile
+    .sidenav-profile
+        .user-profile
+            img(src="img/bg-img/9.jpg", alt="")
+        .user-info
+            h6.user-name.mb-0 Suha Jannat
+            p.available-balance Balance 
+                span $
+                    span.counter 523.98
+
+    // Sidenav Nav
+    ul.sidenav-nav.ps-0
+        li
+            a(href="profile.html")
+                i.lni.lni-user
+                | My Profile
+        li
+            a(href="notifications.html")
+                i.lni.lni-alarm.lni-tada-effect
+                | Notifications
+                span.ms-3.badge.badge-warning 3
+
+        li.suha-dropdown-menu
+            a(href="#")
+                i.lni.lni-cart
+                | Shop Pages
+            ul
+                li
+                    a(href="shop-grid.html") - Shop Grid
+                li
+                    a(href="shop-list.html") - Shop List
+                li
+                    a(href="single-product.html") - Product Details
+                li
+                    a(href="featured-products.html") - Featured Products
+                li
+                    a(href="flash-sale.html") - Flash Sale
+        li
+            a(href="pages.html")
+                i.lni.lni-empty-file
+                | All Pages
+
+        li.suha-dropdown-menu
+            a(href="wishlist-grid.html")
+                i.lni.lni-heart
+                | My Wishlist
+            ul
+                li
+                    a(href="wishlist-grid.html") - Wishlist Grid
+                li
+                    a(href="wishlist-list.html") - Wishlist List
+        li
+            a(href="settings.html")
+                i.lni.lni-cog
+                | Settings
+        li
+            a(href="intro.html")
+                i.lni.lni-power-switch
+                | Sign Out
+
+    // Go Back Button
+    .go-home-btn#goHomeBtn
+        i.lni.lni-arrow-left

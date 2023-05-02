@@ -1,0 +1,97 @@
+/* Top Product Card CSS */
+
+.top-product-card {
+    position: relative;
+    z-index: 1;
+
+    .badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 10;
+    }
+
+    .wishlist-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 10;
+        color: $purple;
+        font-size: 1.25rem;
+        line-height: 1;
+
+        &:hover,
+        &:focus {
+            transform: translateY(-2px);
+        }
+    }
+
+    .product-thumbnail {
+        text-align: center;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .delete-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 10;
+        color: $text;
+        font-size: 1.25rem;
+        line-height: 1;
+    }
+
+    .product-title {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        color: $heading;
+    }
+
+    .sale-price {
+        margin-bottom: 0.25rem;
+        color: $primary;
+        font-weight: 700;
+        font-size: 1.125rem;
+
+        span {
+            color: $text;
+            margin-left: 5px;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+    }
+
+    .product-rating {
+        font-size: 12px;
+        color: $yellow;
+
+        i {
+            margin: 0 1px;
+        }
+    }
+
+    .btn {
+        padding: 0;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        font-size: 1rem;
+        z-index: 9;
+    }
+
+    &:hover,
+    &:focus {
+        .product-title {
+            color: $primary;
+        }
+    }
+}

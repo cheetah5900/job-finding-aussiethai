@@ -1,0 +1,77 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        // Header Area
+        .header-area#headerArea
+            .container.h-100.d-flex.align-items-center.justify-content-between
+                // Back Button
+                .back-button
+                    a(href="home.html")
+                        svg(xmlns="http://www.w3.org/2000/svg", width="24", height="24", fill="currentColor", class="bi bi-arrow-left", viewBox="0 0 16 16")
+                            path(fill-rule="evenodd", d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z")
+
+                // Page Title
+                .page-heading
+                    h6.mb-0 About Us
+
+                // Navbar Toggler
+                .suha-navbar-toggler.d-flex.justify-content-between.flex-wrap#suhaNavbarToggler
+                    span
+                    span
+                    span
+
+        include inc/sidenav.pug
+
+        .page-content-wrapper.py-3
+            .container
+                .card
+                    .card-body
+                        .about-content-wrap
+                            img.mb-3(src="img/bg-img/12.png", alt="")
+                            h5 We are here for your all needs. Let's together safer the world. Stay at home, stay safe.
+
+                            p A versatile e-commerce shop template. It is very nicely designed with modern features &amp; coded with the latest technology.
+                            p It nicely views on all devices with smartphones, tablets, laptops &amp; desktops.
+
+                            ul.mb-3.ps-3
+                                li.ps-2
+                                    i.lni.lni-checkmark-circle.me-1
+                                    | Versatile e-commerce template
+                                li.ps-2
+                                    i.lni.lni-checkmark-circle.me-1
+                                    | Nicely designed with modern features
+                                li.ps-2
+                                    i.lni.lni-checkmark-circle.me-1
+                                    | Coded with the latest technology
+
+                            p It nicely views on all devices with smartphones, tablets, laptops &amp; desktops.
+
+                            .row
+                                .col-6
+                                    img.mb-3.rounded(src="img/bg-img/12.jpg", alt="")
+                                .col-6
+                                    img.mb-3.rounded(src="img/bg-img/16.jpg", alt="")
+
+                            p A versatile e-commerce shop template. It is very nicely designed with modern features &amp; coded with the latest technology.
+                            p It nicely views on all devices with smartphones, tablets, laptops &amp; desktops.
+
+                            h6 Authors Help
+                            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae suscipit blanditiis facilis, est modi, maxime dolorem voluptatibus ea deserunt voluptate minima eaque quidem?
+
+                            h6 Buyers Help
+                            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus sint reiciendis minima iusto ex beatae. Odio ducimus eveniet excepturi quaerat optio totam repellat eligendi! Eaque veritatis omnis doloribus vitae dolore similique facere eos molestiae quibusdam perspiciatis.
+
+                            .contact-btn-wrap.text-center
+                                p.mb-2 For more information, submit a request.
+                                a.btn.btn-primary.w-100(href="contact.html")
+                                    i.lni.lni-life-ring.me-2
+                                    | Submit A Query
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug

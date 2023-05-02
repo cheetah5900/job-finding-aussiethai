@@ -1,0 +1,149 @@
+/* Reboot CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    font-family: $fonts;
+    color: $text;
+    overflow-x: hidden;
+    background-color: #e1f0ff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $heading;
+    line-height: 1.4;
+}
+
+p {
+    color: $text;
+    font-size: 14px;
+}
+
+a,
+a:hover,
+a:focus {
+    transition-duration: 500ms;
+    text-decoration: none;
+    outline: 0 solid transparent;
+    box-shadow: none;
+    color: $primary;
+}
+
+.btn {
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+ul {
+    margin: 0;
+
+    li {
+        list-style: none;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            list-style: none;
+            text-decoration: none;
+        }
+    }
+}
+
+ol {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Section Padding */
+
+.section-padding-30 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.section-padding-0-30 {
+    padding-top: 0;
+    padding-bottom: 30px;
+}
+
+.section-padding-30-0 {
+    padding-top: 30px;
+    padding-bottom: 0;
+}
+
+.section-padding-30-14 {
+    padding-top: 30px;
+    padding-bottom: 14px;
+}
+
+/* Scrollup */
+
+#scrollUp {
+    bottom: 30px;
+    font-size: 16px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: $white;
+    text-align: center;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
+    transition-duration: 500ms;
+    border-radius: 6px;
+    background-color: $heading;
+
+    &:hover,
+    &:focus {
+        background-color: $primary;
+    }
+}
+
+input:required,
+textarea:required {
+    box-shadow: none !important;
+}
+
+input:invalid,
+textarea:invalid {
+    box-shadow: none !important;
+}
+
+.no-boxshadow {
+    box-shadow: none !important;
+}
+
+.container {
+    @media #{$breakpoint-xl} {
+        max-width: 940px;
+    }
+
+    @media #{$breakpoint-lg} {
+        max-width: 800px;
+    }
+
+    @media #{$breakpoint-md} {
+        max-width: 640px;
+    }
+
+    @media #{$breakpoint-xs-landscape} {
+        max-width: 400px;
+    }
+
+    @media #{$breakpoint-sm} {
+        max-width: 450px;
+    }
+}

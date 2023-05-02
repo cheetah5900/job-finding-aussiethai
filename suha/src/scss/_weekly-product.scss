@@ -1,0 +1,131 @@
+/* Weekly Product Card CSS */
+
+.weekly-product-card {
+    position: relative;
+    z-index: 1;
+
+    .product-thumbnail-side {
+        position: relative;
+        z-index: 1;
+        flex: 0 0 50%;
+        max-width: 50%;
+        width: 50%;
+        padding-right: 1rem;
+
+        .product-thumbnail {
+            position: relative;
+            z-index: 1;
+
+            img {
+                max-height: 150px;
+            }
+        }
+
+        .badge {
+            position: absolute;
+            z-index: 2;
+            top: 0.5rem;
+            left: 0.5rem;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            color: $purple;
+            line-height: 1;
+            z-index: 11;
+            font-size: 1.25rem;
+        }
+
+        .delete-btn {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            color: $text;
+            line-height: 1;
+            z-index: 11;
+        }
+    }
+
+    .product-description {
+        position: relative;
+        z-index: 1;
+        flex: 0 0 50%;
+        max-width: 50%;
+        width: 50%;
+
+        .product-title {
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: $heading;
+            line-height: 1;
+        }
+
+        .sale-price {
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+            font-weight: 700;
+            color: $heading;
+            display: flex;
+            align-items: center;
+
+            i {
+                flex: 0 0 22px;
+                max-width: 22px;
+                width: 22px;
+                height: 22px;
+                line-height: 23px;
+                border-radius: 50%;
+                color: $white;
+                background-color: $primary;
+                font-size: 10px;
+                text-align: center;
+                margin-right: 0.25rem;
+            }
+
+            span {
+                text-decoration: line-through;
+                color: $purple;
+                margin-left: 0.25rem;
+            }
+        }
+
+        .product-rating {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+
+            i {
+                flex: 0 0 22px;
+                max-width: 22px;
+                width: 22px;
+                height: 22px;
+                line-height: 23px;
+                border-radius: 50%;
+                color: $white;
+                background-color: $yellow;
+                font-size: 10px;
+                text-align: center;
+                margin-right: 0.25rem;
+                padding-left: 1px;
+            }
+        }
+
+        .btn {
+            i {
+                font-size: 14px;
+            }
+        }
+    }
+
+    &:hover,
+    &:focus {
+        .product-title {
+            color: $primary;
+        }
+    }
+}

@@ -1,0 +1,563 @@
+/* Night Mode */
+
+#previewPage[data-theme="dark"] {
+    background-color: #e7eaf5;
+
+    body {
+        background-color: #e7eaf5;
+    }
+
+    .preview-iframe-wrapper .preview-hero-area .preview-content-wrapper .demo-title {
+        color: $heading;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $heading;
+    }
+}
+
+[data-theme="dark"] {
+    background-color: $dark-primary;
+
+    #preloader {
+        background-color: $dark-primary;
+    }
+
+    body {
+        background-color: $dark-primary;
+    }
+
+    a,
+    a:hover,
+    a:focus {
+        color: $white;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .header-area {
+        background-color: $dark-primary;
+        box-shadow: 0 3px 12px rgba(255, 255, 255, 0.175);
+    }
+
+    .footer-nav-area {
+        background-color: $dark-primary;
+        box-shadow: 0 -3px 12px rgba(255, 255, 255, 0.175);
+    }
+
+    .card {
+        border-color: $dark-sec;
+        background-color: $dark-sec;
+        box-shadow: none;
+    }
+
+    .suha-footer-nav ul li a {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .suha-footer-nav ul li.active a {
+        color: $yellow;
+    }
+
+    .suha-footer-nav ul li a:hover,
+    .suha-footer-nav ul li a:focus {
+        color: $yellow;
+    }
+
+    .top-search-form form .form-control {
+        background-color: transparent;
+        border-color: rgba(255, 255, 255, 0.125);
+    }
+
+    .btn-warning {
+
+        &:hover,
+        &:focus {
+            color: $white;
+            background-color: #282958;
+            border-color: #282958;
+        }
+    }
+
+    .btn-danger {
+
+        &:hover,
+        &:focus {
+            background-color: #282958;
+            border-color: #282958;
+        }
+    }
+
+    .btn-primary {
+
+        &:hover,
+        &:focus {
+            background-color: #282958;
+            border-color: #282958;
+        }
+    }
+
+    .btn-success {
+
+        &:hover,
+        &:focus {
+            background-color: #282958;
+            border-color: #282958;
+        }
+    }
+
+    .btn-info {
+
+        &:hover,
+        &:focus {
+            background-color: #282958;
+            border-color: #282958;
+        }
+    }
+
+    .catagory-card span {
+        color: $white;
+    }
+
+    .catagory-card:hover span,
+    .catagory-card:focus span {
+        color: $yellow;
+    }
+
+    .flash-sale-card .product-title {
+        color: $white;
+    }
+
+    .flash-sale-card:hover .product-title,
+    .flash-sale-card:focus .product-title {
+        color: $yellow;
+    }
+
+    .flash-sale-card .sale-price {
+        color: $white;
+    }
+
+    .flash-sale-card .progress-title {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .top-product-card .product-title {
+        color: $white;
+    }
+
+    .top-product-card:hover .product-title,
+    .top-product-card:focus .product-title {
+        color: $yellow;
+    }
+
+    .top-product-card .btn {
+
+        &:hover,
+        &:focus {
+            background-color: $purple;
+            border-color: $purple;
+        }
+    }
+
+    .weekly-product-card .product-description .product-title {
+        color: $white;
+    }
+
+    .weekly-product-card:hover .product-title,
+    .weekly-product-card:focus .product-title {
+        color: $yellow;
+    }
+
+    .weekly-product-card .product-description .sale-price {
+        color: $yellow;
+    }
+
+    .page-nav li a {
+        background-color: #332858;
+        color: $white;
+    }
+
+    .page-nav li a:hover,
+    .page-nav li a:focus {
+        color: $yellow;
+    }
+
+    .cart-table table tbody tr {
+        background-color: transparent;
+    }
+
+    .cart-table table a {
+        color: $white;
+    }
+
+    .cart-table table a:hover,
+    .cart-table table a:focus {
+        color: $yellow;
+    }
+
+    .cart-table img {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .back-button a {
+        color: $white;
+    }
+
+    .back-button a:hover,
+    .back-button a:focus {
+        color: $yellow;
+    }
+
+    .filter-option {
+        color: $yellow;
+    }
+
+    .catagory-sidebar-area,
+    .type-text-form {
+        background-color: $dark-primary;
+    }
+
+    .type-text-form {
+        box-shadow: 0 -3px 12px rgba(255, 255, 255, 0.175);
+    }
+
+    .type-text-form .form-control,
+    .type-text-form .file-upload span,
+    .type-text-form button[type="submit"] {
+        background-color: $dark-primary;
+    }
+
+    .type-text-form button[type="submit"] {
+        color: $white;
+        outline: none;
+    }
+
+    .user-info-card {
+        background-color: $yellow;
+        border-color: $yellow;
+
+        h5 {
+            color: $white;
+        }
+    }
+
+    .user-data-card .title {
+        color: $white;
+    }
+
+    .cart-table table tbody tr {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .pay-credit-card-form small a {
+        color: $white;
+
+        &:hover,
+        &:focus {
+            color: $yellow;
+        }
+    }
+
+    .single-payment-method a {
+        background-color: $purple;
+
+        h6 {
+            color: $white;
+        }
+
+        &:hover,
+        &:focus {
+            h6 {
+                color: $primary;
+            }
+        }
+    }
+
+    .billing-information-title-card {
+        border-color: transparent;
+    }
+
+    .shipping-method-choose-title-card {
+        border-color: transparent;
+    }
+
+    .language-area-wrapper input[type="radio"]:checked~label,
+    .shipping-method-choose input[type="radio"]:checked~label {
+        color: $white;
+        background-color: rgba(16, 13, 209, 0.70);
+    }
+
+    .language-area-wrapper input[type="radio"]:checked~.check::before,
+    .shipping-method-choose input[type="radio"]:checked~.check::before {
+        background: $white;
+    }
+
+    .language-area-wrapper input[type="radio"]:checked~.check,
+    .shipping-method-choose input[type="radio"]:checked~.check {
+        border-color: $white;
+    }
+
+    .list-group-item {
+        background-color: $dark-sec;
+        border-color: $dark-sec !important;
+    }
+
+    .notification-area .list-group-item h6 {
+        color: $white;
+    }
+
+    .notification-area .list-group-item:hover h6,
+    .notification-area .list-group-item:focus h6 {
+        color: $yellow;
+    }
+
+    .notification-area .list-group-item.readed {
+        background-color: $dark-primary;
+    }
+
+    .single-settings .button.r {
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .single-settings .data-content a {
+
+        &:hover,
+        &:focus {
+            color: $yellow;
+        }
+    }
+
+    .layout-options a {
+        background-color: $dark-sec;
+    }
+
+    .layout-options a:hover,
+    .layout-options a:focus,
+    .layout-options a.active {
+        background-color: $purple;
+    }
+
+    .post-content,
+    .selection-panel.bg-white,
+    .product-title-meta-data.bg-white,
+    .cart-form-wrapper.bg-white,
+    .p-specification.bg-white,
+    .rating-and-review-wrapper.bg-white,
+    .ratings-submit-form.bg-white {
+        background-color: #242644 !important;
+    }
+
+    .p-wishlist-share a {
+        color: $purple;
+    }
+
+    .p-wishlist-share a:last-child {
+        color: $yellow;
+    }
+
+    .single-user-review {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .accordian-card .accordian-header button {
+        color: $yellow;
+    }
+
+    .accordian-card .accordian-header button.collapsed>span {
+        color: $white;
+    }
+
+    .faq-search-form input {
+        border-color: transparent;
+    }
+
+    .top-product-card .delete-btn,
+    .weekly-product-card .product-thumbnail-side .delete-btn {
+        color: $heading;
+    }
+
+    .product-title-meta-data::after {
+        background-image: url(img/core-img/curve2.png);
+    }
+
+    .top-product-card .wishlist-btn {
+        color: $purple;
+    }
+
+    .catagory-card i {
+        color: $yellow;
+    }
+
+    .blog-catagory-card a i {
+        color: $yellow;
+    }
+
+    .blog-catagory-card a span {
+        color: $white;
+
+        &:hover,
+        &:focus {
+            color: $yellow;
+        }
+    }
+
+    .post-meta-data a span {
+        border-color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.7);
+
+        &:hover,
+        &:focus {
+            border-color: $yellow;
+            color: $yellow;
+        }
+    }
+
+    .ratings-submit-form textarea.form-control {
+        border-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.2);
+        color: $white !important;
+    }
+
+    .blog-card .post-content .post-title {
+        color: $white;
+
+        &:hover,
+        &:focus {
+            color: $yellow;
+        }
+    }
+
+    .blog-card .post-content .post-meta a,
+    .blog-card .post-content .post-meta span {
+        color: rgba(255, 255, 255, 0.7);
+
+        &:hover,
+        &:focus {
+            color: $white;
+        }
+    }
+
+    .blog-card .post-content .bg-shapes .circle1,
+    .blog-card .post-content .bg-shapes .circle2,
+    .blog-card .post-content .bg-shapes .circle3,
+    .blog-card .post-content .bg-shapes .circle4 {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .featured-product-card .product-description .product-title {
+        color: $white;
+
+        &:hover,
+        &:focus {
+            color: $yellow;
+        }
+    }
+
+    .cart-table .qty-text,
+    .form-control {
+        border-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.2);
+        color: $white !important;
+        box-shadow: none !important;
+
+        &::placeholder {
+            color: $white;
+            opacity: 1;
+        }
+
+        option {
+            border-color: transparent !important;
+            background-color: $dark-primary;
+            color: $white !important;
+        }
+    }
+
+    .register-form .form-control {
+        background-color: transparent !important;
+
+        &::placeholder {
+            color: $white;
+            opacity: 0.7;
+        }
+    }
+
+    .agent-message-content .agent-message-text p {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: $white;
+    }
+
+    .faq-search-form button {
+        color: $white;
+    }
+
+    .form-check-input {
+        background-color: #332858;
+    }
+
+    .cart-form .quantity-button-handler {
+        border: transparent;
+        background-color: #332858;
+        color: $white;
+    }
+
+    .flash-sale-panel {
+        background-color: #242644 !important;
+    }
+
+    .btn-warning {
+        color: $heading;
+    }
+
+    .pwa-install-alert {
+        background-color: #242644 !important;
+
+        .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+    }
+
+    .featured-product-card .product-description .sale-price,
+    .top-product-card .sale-price {
+        color: $yellow;
+    }
+
+    .product-catagories a {
+        background-color: #242644;
+    }
+
+    .single-order-status.active .order-text h6 {
+        color: $yellow;
+    }
+
+    .single-order-status .order-icon {
+        background-color: transparent;
+        color: #747794;
+        border: 0;
+    }
+
+    .single-order-status.active .order-icon {
+        background-color: #332858;
+        border: 0;
+        color: $white;
+    }
+
+    .single-order-status.active .order-status svg {
+        color: $yellow;
+    }
+
+    .my-order-wrapper .card::after {
+        border-right: 2px dashed rgba(255, 255, 255, 0.1);
+    }
+}

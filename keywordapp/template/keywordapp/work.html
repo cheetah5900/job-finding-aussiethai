@@ -1,0 +1,45 @@
+{%extends 'keywordapp/layout.html'%}
+{%block activework%}active{%endblock activework%}
+{%block content%}
+<div class="page-content-wrapper">
+  <!-- Weekly Best Sellers-->
+  <div class="weekly-best-seller-area py-3">
+    <div class="container">
+      <div class="section-heading">
+        <h2>หางาน</h2>
+        <!-- Discount Coupon Card-->
+        <div class="container">
+          <div class="card discount-coupon-card border-0">
+            <div class="card-body">
+              <div class="coupon-text-wrap d-flex align-items-center">
+                <p class="text-white">- ถ้าคนประกาศไม่ได้ใส่เบอร์มาในคำอธิบาย จะไม่มีเบอร์ให้ติดต่อ
+                  เป็นข้อเสียของระบบ</p>
+                </div>
+                <div class="coupon-text-wrap d-flex align-items-center">
+                  <p class="text-white">- จะไม่แสดงโพสต์ที่ไม่สำคัญ เช่น "หางาน" , "การบ้าน"</p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-3">
+        {%for item1,item2,item3,item4 in dataForLoop%}
+        <div class="col-12">
+          <div class="card weekly-product-card">
+            <div class="card-body align-items-center">
+              <div class="product-description" style="width:100%;max-width: 100%;"><div class="product-title d-block">{{item1}}</div>
+                <p class="sale-price"><i class="lni lni-calendar"></i>{{item2}}</p>
+                <div class="product-rating"><i class="lni lni-text-align-center"></i>{{item3}}</div>
+                <div class="justify-content-center d-flex">
+                  <a class="btn btn-success btn-lg" target="_blank" href="{{item4}}">รายละเอียด</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock content%}

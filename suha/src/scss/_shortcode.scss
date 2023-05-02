@@ -1,0 +1,217 @@
+/* Shortcodes CSS */
+
+.h-100vh {
+    height: 100vh !important;
+}
+
+.bg-img {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.bg-fixed {
+    background-attachment: fixed;
+}
+
+.bg-overlay {
+    position: relative;
+    z-index: 1;
+
+    &::after {
+        position: absolute;
+        content: "";
+        background: $primary;
+        background: -webkit-linear-gradient(to left, $primary, #083afb);
+        background: linear-gradient(to left, $primary, #083afb);
+        opacity: 0.85;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+    }
+}
+
+.bg-gray {
+    background-color: $bg-gray;
+}
+
+.btn,
+.btn:hover,
+.btn:focus {
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.btn {
+    font-size: 14px;
+    border-radius: .4rem;
+
+    &:hover,
+    &:focus {
+        color: $white;
+    }
+}
+
+.btn-group-lg>.btn,
+.btn-lg {
+    font-size: 1rem;
+    border-radius: .5rem;
+}
+
+.btn-group-sm>.btn,
+.btn-sm {
+    font-size: 12px;
+    border-radius: .25rem;
+}
+
+.btn-warning {
+    color: $heading;
+    background-color: $yellow;
+    border-color: $yellow;
+
+    &:hover,
+    &:focus {
+        color: $white;
+        background-color: $heading;
+        border-color: $heading;
+    }
+}
+
+.btn-danger {
+    background-color: $purple;
+    border-color: $purple;
+
+    &:hover,
+    &:focus {
+        background-color: $heading;
+        border-color: $heading;
+    }
+}
+
+.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+
+    &:hover,
+    &:focus {
+        background-color: $heading;
+        border-color: $heading;
+    }
+}
+
+.btn-success {
+    background-color: $green;
+    border-color: $green;
+
+    &:hover,
+    &:focus {
+        background-color: $heading;
+        border-color: $heading;
+    }
+}
+
+.btn-info {
+    background-color: #21d6f1;
+    border-color: #21d6f1;
+    color: $white;
+
+    &:hover,
+    &:focus {
+        background-color: $heading;
+        border-color: $heading;
+        color: $white;
+    }
+}
+
+.bg-primary,
+.badge-primary {
+    background-color: $primary !important;
+}
+
+.bg-danger,
+.badge-danger {
+    background-color: $purple !important;
+}
+
+.bg-warning,
+.badge-warning {
+    background-color: $yellow !important;
+    color: $heading;
+}
+
+.bg-info,
+.badge-info {
+    background-color: #21d6f1 !important;
+}
+
+.bg-success,
+.badge-success {
+    background-color: $green !important;
+}
+
+.text-dark {
+    color: $heading !important;
+}
+
+.section-heading {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem;
+    line-height: 1;
+
+    h6 {
+        margin-bottom: 0 !important;
+        color: $heading;
+        line-height: 1;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.card {
+    border: 0 !important;
+    border-radius: 0.5rem;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+.card-img-top {
+    border-top-left-radius: calc(.75rem - 1px);
+    border-top-right-radius: calc(.75rem - 1px);
+}
+
+.border,
+.border-start,
+.border-right,
+.border-bottom,
+.border-top,
+.list-group-item {
+    border-color: $border !important;
+}
+
+.mfp-iframe-holder .mfp-content {
+    max-width: 1100px;
+}
+
+.internet-connection-status {
+    position: fixed;
+    background-color: transparent;
+    width: 100%;
+    height: 26px;
+    z-index: 99999;
+    text-align: center;
+    color: $white;
+    bottom: 58px !important;
+    left: 0;
+    right: 0;
+    line-height: 26px;
+    font-weight: 700;
+    font-size: 12px;
+}

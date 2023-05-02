@@ -1,0 +1,151 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        // Header Area
+        .header-area#headerArea
+            .container.h-100.d-flex.align-items-center.justify-content-between
+                // Back Button
+                .back-button
+                    a(href="home.html")
+                        svg(xmlns="http://www.w3.org/2000/svg", width="24", height="24", fill="currentColor", class="bi bi-arrow-left", viewBox="0 0 16 16")
+                            path(fill-rule="evenodd", d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z")
+
+                // Page Title
+                .page-heading
+                    h6.mb-0 Wishlist
+
+                // Navbar Toggler
+                .suha-navbar-toggler.d-flex.justify-content-between.flex-wrap#suhaNavbarToggler
+                    span
+                    span
+                    span
+
+        include inc/sidenav.pug
+
+        .page-content-wrapper
+
+            // Top Products
+            .top-products-area.py-3
+                .container
+                    .section-heading.d-flex.align-items-center.justify-content-between
+                        h6 Your Wishlist (4)
+
+                        // Layout Options
+                        .layout-options
+                            a(href="wishlist-grid.html")
+                                i.lni.lni-grid-alt
+
+                            a.active(href="wishlist-list.html")
+                                i.lni.lni-radio-button
+
+                    .row.g-3
+                        // Single Weekly Product Card
+                        .col-12.col-md-6
+                            .card.weekly-product-card
+                                .card-body.d-flex.align-items-center
+                                    .product-thumbnail-side
+                                        span.badge.badge-success Sale
+                                        a.wishlist-btn(href="#")
+                                            i.lni.lni-heart
+                                        a.product-thumbnail.d-block(href="single-product.html")
+                                            img(src="img/product/10.png", alt="")
+                                    .product-description
+                                        a.product-title.d-block(href="single-product.html") Modern Red Sofa
+                                        p.sale-price
+                                            i.lni.lni-dollar
+                                            | $64
+                                            span $89
+                                        .product-rating
+                                            i.lni.lni-star-filled
+                                            | 4.88 (39)
+                                        a.btn.btn-success.btn-sm(href="#")
+                                            i.me-1.lni.lni-cart
+                                            | Buy Now
+
+                        // Single Weekly Product Card
+                        .col-12.col-md-6
+                            .card.weekly-product-card
+                                .card-body.d-flex.align-items-center
+                                    .product-thumbnail-side
+                                        span.badge.badge-primary Sale
+                                        a.wishlist-btn(href="#")
+                                            i.lni.lni-heart
+                                        a.product-thumbnail.d-block(href="single-product.html")
+                                            img(src="img/product/7.png", alt="")
+                                    .product-description
+                                        a.product-title.d-block(href="single-product.html") Office Chair
+                                        p.sale-price
+                                            i.lni.lni-dollar
+                                            | $100
+                                            span $160
+                                        .product-rating
+                                            i.lni.lni-star-filled
+                                            | 4.82 (125)
+                                        a.btn.btn-success.btn-sm(href="#")
+                                            i.me-1.lni.lni-cart
+                                            | Buy Now
+
+                        // Single Weekly Product Card
+                        .col-12.col-md-6
+                            .card.weekly-product-card
+                                .card-body.d-flex.align-items-center
+                                    .product-thumbnail-side
+                                        span.badge.badge-danger -10%
+                                        a.wishlist-btn(href="#")
+                                            i.lni.lni-heart
+                                        a.product-thumbnail.d-block(href="single-product.html")
+                                            img(src="img/product/12.png", alt="")
+                                    .product-description
+                                        a.product-title.d-block(href="single-product.html") Sun Glasses
+                                        p.sale-price
+                                            i.lni.lni-dollar
+                                            | $24
+                                            span $32
+                                        .product-rating
+                                            i.lni.lni-star-filled
+                                            | 4.79 (63)
+                                        a.btn.btn-success.btn-sm(href="#")
+                                            i.me-1.lni.lni-cart
+                                            | Buy Now
+
+                        // Single Weekly Product Card
+                        .col-12.col-md-6
+                            .card.weekly-product-card
+                                .card-body.d-flex.align-items-center
+                                    .product-thumbnail-side
+                                        span.badge.badge-warning New
+                                        a.wishlist-btn(href="#")
+                                            i.lni.lni-heart
+                                        a.product-thumbnail.d-block(href="single-product.html")
+                                            img(src="img/product/13.png", alt="")
+                                    .product-description
+                                        a.product-title.d-block(href="single-product.html") Wall Clock
+                                        p.sale-price
+                                            i.lni.lni-dollar
+                                            | $31
+                                            span $47
+                                        .product-rating
+                                            i.lni.lni-star-filled
+                                            | 4.99 (7)
+                                        a.btn.btn-success.btn-sm(href="#")
+                                            i.me-1.lni.lni-cart
+                                            | Buy Now
+
+                        // Select All Products
+                        .col-12
+                            .select-all-products-btn
+                                a.btn.btn-danger.w-100(href="#")
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-cart-check me-1" viewBox="0 0 16 16">
+                                        <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                    </svg>
+                                    | Add All To Cart
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug

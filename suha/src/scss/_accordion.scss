@@ -1,0 +1,85 @@
+/* Accordion CSS */
+
+.accordian-card {
+    position: relative;
+    z-index: 1;
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    p {
+        padding-left: 35px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .accordian-header {
+
+        &.collapse {
+            display: block;
+        }
+
+        button {
+            color: $primary;
+            text-align: left;
+            padding-left: 0;
+            padding-right: 0;
+
+            span i {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: $primary;
+                display: inline-block;
+                text-align: center;
+                line-height: 30px;
+                color: $white;
+                margin-right: 0.5rem;
+                font-size: 1rem;
+            }
+
+            >i {
+                color: $text;
+                transform: rotate(-90deg);
+            }
+
+            &:hover,
+            &:focus {
+                color: $primary;
+            }
+
+            &.collapsed> {
+                span {
+                    color: $heading;
+                }
+
+                i {
+                    transform: rotate(0);
+                }
+            }
+        }
+    }
+
+    &.seller-card {
+        .accordian-header {
+            button {
+                span i {
+                    background-color: $purple;
+                }
+            }
+        }
+    }
+
+    &.others-card {
+        .accordian-header {
+            button {
+                span i {
+                    background-color: $green;
+                }
+            }
+        }
+    }
+}

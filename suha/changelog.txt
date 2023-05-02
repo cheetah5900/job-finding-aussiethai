@@ -1,0 +1,63 @@
+Version 2.3.0
+- Improved: Design Quality (Chat Page)
+- Fixed: Some Minor Issues
+
+Version: 2.2.0
+- Updated: Bootstrap v5.0.0-alpha1 > Bootstrap v5.0.0-beta1
+- Improved: Design Quality
+
+Version: 2.1.0
+- Added: CSS Autoprefixer in npm (Now no need to use SCSS mixins for CSS prefixes).
+- Fixed: Some Minor Bugs
+
+Version: 2.0.0
+- Updated: Bootstrap 4.5.0 > Bootstrap 5.0.0-alpha1
+- New Added: Progressive Web App (PWA)
+- New Added: Dropdown Menu in the Sidebar Area
+- Improved: Design Quality
+
+Version: 1.6.0
+- Fixed: Some Minor Bugs
+
+Version: 1.5.0
+- New Added: About Us Page
+- New Added: Contact Page
+- New Added: OTP Page
+- New Added: OTP Confirmation Page
+- New Added: Featured Product Page
+- Updated: Bootstrap 4.4.1 > Bootstrap 4.5.0
+- Updated: Gulp 3.9.1 > Gulp 4
+- Updated: LineIcons 1.0 > LineIcons 2.0
+- Improved: Design Quality
+- Fixed: Some Minor Issues
+
+Version: 1.4.0
+- Improved: Responsive Quality (Smartphone - Tablet - Laptop - Desktop)
+
+Version: 1.3.0
+- Updated: jQuery Code Quality
+
+Version: 1.2.0
+- New Added: Blog & Blog Details Pages
+
+Version: 1.1.1
+- Improved: Dark Mode Improved
+- Updated: Design Quality
+
+Version: 1.1.0
+- New Added: Dark Mode Version
+
+Version: 1.0.3
+- Updated: Design Quality
+- Removed: IcoFont Web Icons Font
+- New Added: LineIcons Web Icons Font
+
+Version: 1.0.2
+- Updated: Bootstrap 4.3.1 > Bootstrap 4.4.1
+- Updated: Design Quality
+
+Version: 1.0.1
+- Fixed: Some Minor Issues
+
+Version 1.0.0
+- Initial Realease

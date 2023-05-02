@@ -1,0 +1,86 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        // Header Area
+        .header-area#headerArea
+            .container.h-100.d-flex.align-items-center.justify-content-between
+                // Back Button
+                .back-button
+                    a(href="profile.html")
+                        svg(xmlns="http://www.w3.org/2000/svg", width="24", height="24", fill="currentColor", class="bi bi-arrow-left", viewBox="0 0 16 16")
+                            path(fill-rule="evenodd", d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z")
+
+                // Page Title
+                .page-heading
+                    h6.mb-0 Edit Profile
+
+                // Navbar Toggler
+                .suha-navbar-toggler.d-flex.justify-content-between.flex-wrap#suhaNavbarToggler
+                    span
+                    span
+                    span
+
+        include inc/sidenav.pug
+
+        .page-content-wrapper
+            .container
+                // Profile Wrapper
+                .profile-wrapper-area.py-3
+                    // User Information
+                    .card.user-info-card
+                        .card-body.p-4.d-flex.align-items-center
+                            .user-profile.me-3
+                                img(src="img/bg-img/9.jpg", alt="")
+                                .change-user-thumb
+                                    form
+                                        input.form-control-file(type="file")
+                                        button
+                                            i.lni.lni-pencil
+                            .user-info
+                                p.mb-0.text-white @designing-world
+                                h5.mb-0 Suha Jannat
+
+                    // User Meta Data
+                    .card.user-data-card
+                        .card-body
+                            form(action="" method="")
+                                .mb-3
+                                    .title.mb-2
+                                        i.lni.lni-user
+                                        span Username
+                                    input.form-control(type="text" value="designing-world")
+
+                                .mb-3
+                                    .title.mb-2
+                                        i.lni.lni-user
+                                        span Full Name
+                                    input.form-control(type="text" value="Suha Jannat")
+
+                                .mb-3
+                                    .title.mb-2
+                                        i.lni.lni-phone
+                                        span Phone
+                                    input.form-control(type="text" value="+880 000 111 222")
+
+                                .mb-3
+                                    .title.mb-2
+                                        i.lni.lni-envelope
+                                        span Email Address
+                                    input.form-control(type="email" value="care@example.com")
+
+                                .mb-3
+                                    .title.mb-2
+                                        i.lni.lni-map-marker
+                                        span Shipping Address
+                                    input.form-control(type="text" value="28/C Green Road, BD")
+
+                                button.btn.btn-success.w-100(type="submit") Save All Changes
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug

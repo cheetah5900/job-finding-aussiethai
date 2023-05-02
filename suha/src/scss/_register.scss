@@ -1,0 +1,259 @@
+/* Register CSS */
+
+.login-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    @include bg-gradient;
+    z-index: 10;
+    overflow-y: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    overflow-x: hidden;
+
+    .background-shape {
+        position: absolute;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background-color: $white;
+        opacity: 0.15;
+        z-index: -1;
+        top: -130px;
+        right: -85px;
+    }
+
+    .success-check {
+        color: $white;
+        margin: 0 auto;
+
+        i {
+            font-size: 3rem;
+        }
+    }
+}
+
+.register-form {
+    position: relative;
+    z-index: 1;
+
+    .form-group {
+        position: relative;
+        z-index: 1;
+    }
+
+    span {
+        color: $white;
+        font-size: 12px;
+        display: block;
+    }
+
+    form>.form-group>label {
+        position: absolute;
+        text-align: center;
+        z-index: 100;
+        border-radius: 50%;
+        left: 0;
+        font-size: 16px;
+        margin-bottom: 0;
+        color: $white;
+        top: 26px;
+    }
+
+    .form-control {
+        border-radius: 0;
+        border: 0;
+        color: $white;
+        font-size: 13px;
+        background-color: transparent;
+        height: 40px;
+        padding: 8px 8px 8px 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+        &::placeholder {
+            color: $white;
+            opacity: 0.5;
+        }
+    }
+
+    .progress {
+        width: 100%;
+        height: 5px;
+        margin-top: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .password-score {
+        font-size: 14px;
+        font-weight: 700;
+        color: $white;
+        display: flex;
+
+        span {
+            font-size: 18px;
+            margin-left: 1rem;
+        }
+    }
+
+    .password-recommendation {
+        display: none !important;
+    }
+
+    #password-recommendation-heading {
+        font-weight: 700;
+        color: $green;
+        font-size: 16px;
+    }
+}
+
+.view-as-guest {
+    .btn {
+        transition-duration: 500ms;
+        color: $white;
+        opacity: 0.65;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 1px;
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+        }
+    }
+}
+
+.login-meta-data {
+    a {
+        font-size: 14px;
+        color: $white;
+        font-weight: 500;
+
+        &:hover,
+        &:focus {
+            color: $yellow;
+        }
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.7);
+
+        a {
+            color: $white;
+            font-weight: 500;
+
+            &:hover,
+            &:focus {
+                color: $yellow;
+            }
+        }
+    }
+}
+
+.go-back-btn {
+    transition-duration: 400ms;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background-color: $purple;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    color: $white;
+    line-height: 42px;
+    z-index: 10;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background-color: $primary;
+        color: $white;
+    }
+}
+
+.otp-form {
+    position: relative;
+    z-index: 1;
+
+    .form-control {
+        padding: 0.5rem 0.75rem;
+        border: 0;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.25);
+        font-weight: 700;
+        color: $white;
+        border-radius: 0.5rem;
+
+        &::placeholder {
+            color: $white;
+            opacity: 0.5;
+        }
+    }
+
+    select {
+        &.form-select {
+            padding: 0.5rem 0.75rem;
+            height: 50px;
+            border: 0;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.25);
+            font-weight: 700;
+            color: $white;
+            border-radius: 0.5rem;
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            flex: 0 0 80px;
+            max-width: 80px;
+            width: 80px;
+
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+
+        option {
+            background-color: $primary;
+        }
+    }
+
+    input {
+        &.form-control {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+    }
+}
+
+.otp-verify-form {
+    position: relative;
+    z-index: 1;
+
+    .form-control {
+        transition-duration: 500ms;
+        flex: 0 0 50px;
+        max-width: 50px;
+        width: 50px;
+        padding: 12px;
+        border: 0;
+        text-align: center;
+        font-size: 1.25rem;
+        background-color: rgba(255, 255, 255, 0.25);
+        color: $white;
+        font-weight: 700;
+
+        &::placeholder {
+            color: $white;
+            opacity: 0.5;
+        }
+
+        &:focus {
+            background-color: $yellow;
+            color: $heading;
+        }
+    }
+}
+
+.otp-sec {
+    font-weight: 500;
+}

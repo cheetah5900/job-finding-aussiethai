@@ -1,0 +1,139 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        // Header Area
+        .header-area#headerArea
+            .container.h-100.d-flex.align-items-center.justify-content-between
+                // Back Button
+                .back-button
+                    a(href="settings.html")
+                        svg(xmlns="http://www.w3.org/2000/svg", width="24", height="24", fill="currentColor", class="bi bi-arrow-left", viewBox="0 0 16 16")
+                            path(fill-rule="evenodd", d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z")
+
+                // Page Title
+                .page-heading
+                    h6.mb-0 Support
+
+                // Navbar Toggler
+                .suha-navbar-toggler.d-flex.justify-content-between.flex-wrap#suhaNavbarToggler
+                    span
+                    span
+                    span
+
+        include inc/sidenav.pug
+
+        .page-content-wrapper
+            .container
+                // Support Wrapper
+                .support-wrapper.py-3
+                    .card
+                        .card-body
+                            h4.faq-heading.text-center How can we help you with?
+
+                            // Search Form
+                            form.faq-search-form(action="#" method="")
+                                input.form-control(type="search" name="search" placeholder="Search")
+                                button(type="submit")
+                                    i.fa.fa-search
+
+                    // Accordian Area Wrapper
+                    .accordian-area-wrapper.mt-3
+
+                        // Accordian Card
+                        .card.accordian-card.clearfix
+                            .card-body
+                                h5.accordian-title For Buyers
+
+                                .accordion#accordion1
+                                    // Single Accordian
+                                    #headingOne.accordian-header
+                                        button.d-flex.align-items-center.justify-content-between.w-100.collapsed.btn(type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne")
+                                            span
+                                                i.lni.lni-bi-cycle
+                                                | How to get started?
+                                            i.lni.lni-chevron-right
+
+                                    #collapseOne.collapse(aria-labelledby="headingOne" data-bs-parent="#accordion1")
+                                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero excepturi tempore exercitationem porro dignissimos.
+
+                                    // Single Accordian
+                                    #headingTwo.accordian-header
+                                        button.d-flex.align-items-center.justify-content-between.w-100.collapsed.btn(type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo")
+                                            span
+                                                i.lni.lni-cart-full
+                                                | How to buy a product?
+                                            i.lni.lni-chevron-right
+
+                                    #collapseTwo.collapse(aria-labelledby="headingTwo" data-bs-parent="#accordion1")
+                                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero excepturi tempore exercitationem porro dignissimos.
+
+                    // Accordian Area Wrapper
+                    .accordian-area-wrapper.mt-3
+
+                        // Accordian Card
+                        .card.accordian-card.seller-card.clearfix
+                            .card-body
+                                h5.accordian-title For Authors
+
+                                .accordion#accordion2
+                                    // Single Accordian
+                                    #headingThree.accordian-header
+                                        button.d-flex.align-items-center.justify-content-between.w-100.collapsed.btn(type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree")
+                                            span
+                                                i.lni.lni-dropbox
+                                                | How can upload a product?
+                                            i.lni.lni-chevron-right
+
+                                    #collapseThree.collapse(aria-labelledby="headingThree" data-bs-parent="#accordion2")
+                                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero excepturi tempore exercitationem porro dignissimos.
+
+                                    // Single Accordian
+                                    #headingFour.accordian-header
+                                        button.d-flex.align-items-center.justify-content-between.w-100.collapsed.btn(type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour")
+                                            span
+                                                i.lni.lni-dollar
+                                                | Commission structure
+                                            i.lni.lni-chevron-right
+
+                                    #collapseFour.collapse(aria-labelledby="headingFour" data-bs-parent="#accordion2")
+                                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero excepturi tempore exercitationem porro dignissimos.
+
+                    // Accordian Area Wrapper
+                    .accordian-area-wrapper.mt-3
+
+                        // Accordian Card
+                        .card.accordian-card.others-card.clearfix
+                            .card-body
+                                h5.accordian-title Others
+
+                                .accordion#accordion3
+                                    // Single Accordian
+                                    #headingFive.accordian-header
+                                        button.d-flex.align-items-center.justify-content-between.w-100.collapsed.btn(type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive")
+                                            span
+                                                i.lni.lni-exit
+                                                | How to return a product?
+                                            i.lni.lni-chevron-right
+
+                                    #collapseFive.collapse(aria-labelledby="headingFive" data-bs-parent="#accordion3")
+                                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero excepturi tempore exercitationem porro dignissimos.
+
+                                    // Single Accordian
+                                    #headingSix.accordian-header
+                                        button.d-flex.align-items-center.justify-content-between.w-100.collapsed.btn(type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix")
+                                            span
+                                                i.lni.lni-emoji-sad
+                                                | My product is misleading?
+                                            i.lni.lni-chevron-right
+
+                                    #collapseSix.collapse(aria-labelledby="headingSix" data-bs-parent="#accordion3")
+                                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero excepturi tempore exercitationem porro dignissimos.
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug

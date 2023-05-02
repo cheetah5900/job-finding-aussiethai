@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        // Order/Payment Success
+        .order-success-wrapper
+            .content
+                i.lni.lni-checkmark-circle
+                h5 Payment Done
+                p We will notify you of all the details via email. Thank you!
+                a.btn.btn-warning.mt-3(href="home.html") Buy Again
+
+        include inc/footer-no-internet.pug

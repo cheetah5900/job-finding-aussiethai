@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        // Header Area
+        .header-area#headerArea
+            .container.h-100.d-flex.align-items-center.justify-content-between
+                // Back Button
+                .back-button
+                    a(href="notifications.html")
+                        svg(xmlns="http://www.w3.org/2000/svg", width="24", height="24", fill="currentColor", class="bi bi-arrow-left", viewBox="0 0 16 16")
+                            path(fill-rule="evenodd", d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z")
+
+                // Page Title
+                .page-heading
+                    h6.mb-0 Notifications Details
+
+                // Navbar Toggler
+                .suha-navbar-toggler.d-flex.justify-content-between.flex-wrap#suhaNavbarToggler
+                    span
+                    span
+                    span
+
+        include inc/sidenav.pug
+
+        // Page Content Wrapper
+        .page-content-wrapper
+            .container
+                // Notifications Details Area
+                .notification-area.pt-3.pb-2
+                    // Notification Details
+                    .list-group-item.d-flex.py-3
+                        span.noti-icon
+                            i.lni.lni-alarm
+                        .noti-info
+                            h6 Suha just uploaded a new product!
+                            p Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam nihil magnam accusantium sint voluptatibus illo earum corporis similique libero praesentium excepturi nostrum eos soluta, cum, quis quo perferendis in?
+                            a.btn-link(href="#") Product Link
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug

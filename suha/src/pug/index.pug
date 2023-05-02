@@ -1,0 +1,141 @@
+doctype html
+html#previewPage(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        .preview-iframe-wrapper
+            // Preview Hero Area
+            .preview-hero-area
+                .container.demo-container
+                    .row.align-items-center.justify-content-center
+                        .col-12.col-md-8.col-lg-6
+                            .preview-content-wrapper
+                                h2.demo-title
+                                    span Suha -
+                                    |   Multipurpose Ecommerce Mobile Template
+                                p.demo-desc.mb-4 A versatile e-commerce shop template. It is very nicely designed with modern features &amp; coded with the latest technology. It nicely views on all devices with smartphones, tablets, laptops &amp; desktops.
+
+                                .tech-img.mb-5
+                                    ul.d-flex.flex-wrap.ps-0
+                                        li
+                                            img(src="img/demo-img/pwa.png", alt="")
+
+                                        li
+                                            img(src="img/demo-img/bootstrap.png", alt="")
+
+                                        li
+                                            img(src="img/demo-img/npm.png", alt="")
+
+                                        li
+                                            img(src="img/demo-img/gulp.png", alt="")
+
+                                        li
+                                            img(src="img/demo-img/sass.png", alt="")
+
+                                        li
+                                            img(src="img/demo-img/pug.png", alt="")
+
+                                        li
+                                            img(src="img/demo-img/jquery.png", alt="")
+
+                                .live-preview-btn.mb-5.d-md-none
+                                    a.btn.btn-primary.btn-lg.mb-3(href="intro.html", target="_blank") Click the button to live preview
+
+                                .qr-code-wrapper
+                                    .scan-me
+                                        img(src="img/demo-img/qr-code.png", alt="")
+                                    h6.mb-0 Scan to view on your mobile device
+
+                        .col-12.col-lg-6
+                            .text-center.text-lg-end
+                                iframe(src="intro.html")
+
+            // Features Area
+            .features-area.bg-white
+                .container.demo-container
+                    .row
+                        .col-12.col-md-6.col-xl-5
+                            h2 Main Features
+                            p.mb-5 Here are some core features of this template. Lots of features &amp; layouts are in the demo. Explore now!
+
+                    .row
+                        .col-12.col-md-4
+                            ul.ps-0
+                                li.active PWA Ready
+                                    span.badge.badge-warning.ms-2 HOT
+                                li.active Versatile e-commerce shop template
+                                li.active Nicely designed with modern features
+                                li.active Coded with the latest technology
+                                li.active 41+ necessary pages
+                                li Bug free code
+                                li Cross browser support
+                                li Multi step checkout
+                                li Notifications pages
+                                li Language page
+                                li.active Password strength meter
+                                li.active OTP pages
+
+                        .col-12.col-md-4
+                            ul.ps-0
+                                li.active Dropdown menu in sidebar
+                                    span.badge.badge-danger.ms-2 New
+                                li.active Bootstrap 5
+                                    span.badge.badge-warning.ms-2 HOT
+                                li.active Node package manager (npm)
+                                li.active Gulp 4
+                                li.active Sass CSS preprocessor
+                                li.active Pug (formerly Jade)
+                                li jQuery 2.2.4
+                                li Live chat
+                                li Support page
+                                li Authentication pages
+                                li Unique design
+                                li About us page
+
+                        .col-12.col-md-4
+                            ul.ps-0
+                                li Blog pages
+                                li Google fonts
+                                li Easy to customize
+                                li Clean &amp; 100% validate code
+                                li Privacy policy
+                                li Settings page
+                                li.active Add to cart notify
+                                li.active Real support
+                                li.active Dark / Night mode
+                                li.active Contact page
+                                li Profile page
+                                li Lots of new features coming soon
+
+                .container.demo-container
+                    .border-top.margin-100.d-none.d-md-block
+
+                .tablet-wrap.d-none.d-md-block
+                    .container.demo-container
+                        .row
+                            .col-12.mb-5.text-center
+                                h2 Tablet Device Preview
+                                p.mb-0 You will see it nicely on all devices with smartphones, tablets, laptops & desktops.
+
+                // Tablet Frame Wrap
+                .ipad-frame-wrap
+                    iframe(src="intro.html")
+
+            // Footer Area
+            .preview-footer-area
+                .container.h-100.d-flex.align-items-center.justify-content-between.demo-container
+                    .footer-logo
+                        a(href="#")
+                            img(src="img/core-img/logo-small.png", alt="")
+
+                    .footer-nav
+                        ul.d-flex.align-items-center
+                            li
+                                a(href="#") Home
+                            li
+                                a(href="#") Privacy Policy
+                            li
+                                a(href="#") Support
+
+        include inc/footer-no-internet.pug

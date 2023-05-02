@@ -1,0 +1,86 @@
+/* -----------------------------------------
+[Master Stylesheet]
+
+Template Name: Suha - Multipurpose Ecommerce Mobile HTML Template
+Template Author: Designing World
+Template Author URL: https://themeforest.net/user/designing-world
+Version: 2.3.0
+Last Updated: 5 Feb 2021
+Created: 15 Dec 2019
+
+[Table of Contents]
+
+    * Google Fonts
+    * Include Third Party CSS Library
+        + Bootstrap CSS
+        + Animate CSS
+        + Owl Carousel CSS
+        + Font Awesome CSS
+        + Line Icon CSS
+    * Template Mixins
+        + Miscellaneous
+    * Template Variables
+    * Template Responsive
+    * Main Styles
+        + Reboot CSS
+        + Shortcode CSS
+        + Preloader CSS
+        + Animation CSS
+        + Demo CSS
+        + Header CSS
+        + Hero CSS
+        + Home CSS
+        + Footer CSS
+        + CTA CSS
+        + Register CSS
+        + Contact CSS
+        + Dark Mode CSS
+
+# [font-family]
+'Roboto', sans-serif;
+----------------------------------------- */
+
+// Mixin
+@import "_mixin.scss";
+// Variables
+@import "_variables.scss";
+// Responsive
+@import "_responsive.scss";
+
+// Main CSS
+@import "_reboot.scss";
+@import "_preloader.scss";
+@import "_shortcode.scss";
+@import "_animation.scss";
+
+@import "_demo.scss";
+@import "_miscellaneous.scss";
+@import "_header.scss";
+@import "_footer.scss";
+
+@import "_register.scss";
+@import "_sidenav.scss";
+@import "_hero.scss";
+@import "_chat.scss";
+
+@import "_settings.scss";
+@import "_catagory.scss";
+@import "_flash-sale.scss";
+@import "_top-product.scss";
+
+@import "_weekly-product.scss";
+@import "_featured-product.scss";
+@import "_product-details.scss";
+@import "_cart.scss";
+
+@import "_order.scss";
+@import "_accordion.scss";
+@import "_faq.scss";
+@import "_blog.scss";
+
+@import "_contact.scss";
+@import "_cta.scss";
+@import "_profile.scss";
+@import "_notification.scss";
+
+@import "_dark.scss";

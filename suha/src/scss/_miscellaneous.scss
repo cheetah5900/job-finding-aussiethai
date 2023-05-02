@@ -1,0 +1,147 @@
+.page-content-wrapper {
+    position: relative;
+    z-index: 1;
+    margin-top: 50px;
+    margin-bottom: 58px;
+}
+
+.pwa-install-alert {
+    position: fixed;
+    z-index: 999999;
+    border-radius: 0.5rem;
+    max-width: 18rem;
+    top: 62px;
+    right: 12px;
+    border: 0;
+
+    .toast-body {
+        padding: 1.25rem;
+
+        .content {
+            img {
+                flex: 0 0 30px;
+                width: 30px;
+                max-width: 30px;
+                margin-right: 0.5rem;
+            }
+        }
+
+        span {
+            font-size: 13px;
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 1rem;
+        right: 1.25rem;
+        z-index: 10;
+
+        span {
+            font-size: 18px;
+            color: $white;
+        }
+    }
+}
+
+.page-nav {
+    position: relative;
+    z-index: 1;
+
+    li {
+        a {
+            color: $heading;
+            display: block;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: $white;
+            font-size: 14px;
+            font-weight: 500;
+
+            i {
+                font-size: 1rem;
+                margin-left: auto;
+            }
+
+            &:hover,
+            &:focus {
+                color: $primary;
+                background-color: $bg-gray;
+            }
+        }
+
+        &:last-child {
+            a {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.catagory-sidebar-area {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 2rem;
+}
+
+.widget {
+    .widget-title {
+        display: block;
+    }
+
+    .form-check-label {
+        font-size: 14px;
+    }
+}
+
+.select-product-catagory select {
+    padding: 0;
+    border: 0 !important;
+    padding-right: .875rem !important;
+    font-size: 14px;
+    background-color: transparent;
+    color: $text;
+    background-position: right 0rem center;
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+
+
+
+.layout-options {
+    position: relative;
+    z-index: 1;
+
+    a {
+        display: inline-block;
+        width: 30px;
+        height: 24px;
+        background-color: $white;
+        border-radius: 0.25rem;
+        margin-left: .5rem;
+        text-align: center;
+        font-size: 12px;
+        color: $text;
+
+        i {
+            line-height: 24px;
+        }
+
+        &.active,
+        &:hover,
+        &:focus {
+            color: $white;
+            background-color: $purple;
+        }
+    }
+}
+
+.notification-clear-all {
+    font-size: 12px;
+}

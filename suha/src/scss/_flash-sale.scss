@@ -1,0 +1,78 @@
+/* Flash Sale CSS */
+
+.flash-sale-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.flash-sale-slide.owl-carousel {
+    width: 130% !important;
+
+    @media #{$breakpoint-md} {
+        width: 100% !important;
+    }
+
+    @media #{$breakpoint-lg} {
+        width: 100% !important;
+    }
+
+    @media #{$breakpoint-xl} {
+        width: 100% !important;
+    }
+}
+
+.flash-sale-card {
+    position: relative;
+    z-index: 1;
+    box-shadow: none !important;
+
+    img {
+        margin-bottom: 1rem;
+    }
+
+    .product-title {
+        transition-duration: 500ms;
+        color: $heading;
+        font-size: 14px;
+        font-weight: 500;
+        display: block;
+        line-height: 1.2;
+        margin-bottom: 0.25rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .sale-price {
+        font-size: 1rem;
+        font-weight: 700;
+        color: $primary;
+        margin-bottom: 0;
+    }
+
+    .real-price {
+        display: inline-block;
+        margin-left: 5px;
+        font-size: 12px;
+        text-decoration: line-through;
+        margin-bottom: 0.25rem;
+        color: $text;
+    }
+
+    .progress {
+        height: 0.25rem;
+    }
+
+    .progress-title {
+        color: $text;
+        font-size: 12px;
+        display: block;
+    }
+
+    &:hover,
+    &:focus {
+        .product-title {
+            color: $primary;
+        }
+    }
+}

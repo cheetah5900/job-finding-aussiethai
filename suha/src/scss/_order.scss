@@ -1,0 +1,315 @@
+/* Order CSS */
+
+.my-order-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: calc(100vh - 108px);
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+
+    .card {
+        border-radius: 2rem 2rem 0 0;
+
+        &::after {
+            width: 2px;
+            height: calc(100% - 3rem);
+            border-right: 2px dashed $border;
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            right: 35px;
+        }
+    }
+}
+
+.single-order-status {
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .order-icon {
+        margin-right: 0.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: $text;
+        border: 1px solid #ebebeb;
+    }
+
+    .order-text {
+
+        h6 {
+            font-size: 12px;
+            margin-bottom: 0.375rem;
+            line-height: 1;
+            color: $text;
+        }
+
+        span {
+            font-size: 12px;
+            display: block;
+        }
+    }
+
+    .order-status {
+        margin-left: auto !important;
+
+        svg {
+            color: $text;
+        }
+    }
+
+    &.active {
+        .order-icon {
+            color: $heading;
+        }
+
+        .order-text {
+            h6 {
+                font-size: 13px;
+                color: $heading;
+            }
+        }
+
+        .order-status {
+            svg {
+                color: $green;
+            }
+        }
+    }
+}
+
+.order-success-wrapper {
+    position: relative;
+    width: 100%;
+    @include bg-gradient;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 3rem;
+
+    i {
+        display: inline-block;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: $white;
+    }
+
+    h5 {
+        color: $white;
+    }
+
+    p {
+        margin-bottom: 0;
+        font-size: 13px;
+        color: $white;
+    }
+}
+
+.billing-information-card {
+    position: relative;
+    z-index: 1;
+}
+
+.billing-information-title-card {
+    border-radius: .5rem .5rem 0 0;
+    border-color: $purple;
+}
+
+.shipping-method-choose-title-card {
+    border-radius: .5rem .5rem 0 0;
+    border-color: $green;
+}
+
+.shipping-method-choose-card {
+    border-radius: 0 0 .5rem .5rem;
+}
+
+.single-payment-method {
+    a {
+        display: block;
+        position: relative;
+        z-index: 1;
+        background-color: $white;
+        text-align: center;
+        padding: 2rem 1rem;
+        border-radius: 0.5rem;
+
+        &::after {
+            transition-duration: 500ms;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            content: '\f00c';
+            font-family: 'FontAwesome';
+            border-radius: 50%;
+            width: 1.75rem;
+            height: 1.75rem;
+            background-color: $green;
+            color: $white;
+            line-height: 1.75rem;
+            opacity: 0;
+        }
+
+        i {
+            font-size: 3rem;
+            margin-bottom: .5rem;
+            display: block;
+        }
+
+        h6 {
+            transition-duration: 500ms;
+            margin-bottom: 0;
+        }
+
+        &.active,
+        &:hover,
+        &:focus {
+
+            &::after {
+                opacity: 1;
+            }
+
+            h6 {
+                color: $primary;
+            }
+        }
+    }
+}
+
+.credit-card-info-wrapper {
+    img {
+        margin: 0 auto;
+        max-width: 300px;
+    }
+}
+
+.pay-credit-card-form {
+    position: relative;
+    z-index: 1;
+
+    label {
+        font-size: 12px;
+        font-weight: 700;
+        margin-left: 0.25rem;
+        text-transform: uppercase;
+    }
+
+    small {
+        font-size: 11px;
+    }
+
+    .form-control {
+        height: 44px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        box-shadow: 0 1px 1px 0px #d7def4;
+    }
+}
+
+.bank-ac-info {
+    .list-group-item {
+        font-size: 14px;
+    }
+}
+
+.language-area-wrapper,
+.shipping-method-choose {
+    position: relative;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: block;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+
+            input[type=radio] {
+                position: absolute;
+                visibility: hidden;
+            }
+
+            label {
+                display: block;
+                position: relative;
+                padding: 10px 10px 10px 45px;
+                z-index: 9;
+                cursor: pointer;
+                transition: all 0.25s linear;
+                margin-bottom: 0;
+                border-radius: 0.4rem;
+                font-size: 14px;
+                font-weight: 700;
+
+                span {
+                    font-size: 11px;
+                    margin-left: 0.5rem;
+                }
+            }
+
+            .check {
+                display: block;
+                position: absolute;
+                border: 4px solid $green;
+                border-radius: 100%;
+                height: 20px;
+                width: 20px;
+                top: 50%;
+                margin-top: -10px;
+                left: 15px;
+                z-index: 5;
+                transition: all .25s linear;
+
+                &::before {
+                    display: block;
+                    position: absolute;
+                    content: '';
+                    border-radius: 100%;
+                    height: 8px;
+                    width: 8px;
+                    top: 50%;
+                    left: 50%;
+                    margin: -4px;
+                    transition: background 0.25s linear;
+                }
+            }
+        }
+    }
+
+    input[type=radio]:checked~.check {
+        border-color: $primary;
+    }
+
+    input[type=radio]:checked~.check::before {
+        background: $primary;
+    }
+
+    input[type=radio]:checked~label {
+        color: $primary;
+        background-color: rgba(16, 13, 209, 0.103);
+    }
+}
