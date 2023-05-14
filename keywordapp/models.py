@@ -23,6 +23,7 @@ class ListOfWorkModel(models.Model):
     header = models.CharField(default='',max_length=255)
     date = models.DateField(blank=True)
     content = models.TextField(default='')
+    type = models.CharField(default='other',max_length=255)
     link = models.CharField(default='',max_length=255)
 
     def __str__(self):
@@ -49,16 +50,10 @@ class ListOfHouseModel(models.Model):
     header = models.CharField(default='',max_length=255)
     date = models.DateField(blank=True)
     content = models.TextField(default='')
+    type = models.CharField(default='other',max_length=255)
     link = models.CharField(default='',max_length=255)
 
     def __str__(self):
         return self.header
     
-# Refresh Check
-class RefreshCheck(models.Model):
-    times = models.IntegerField(default=0)
-    date = models.DateField()
-
-    def __str__(self):
-        return self.times
 

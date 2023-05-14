@@ -98,7 +98,7 @@ def RefreshConditionCheck(request):
 
     RefreshWork()
     RefreshHouse()
-    return 'done'
+    return render(request, 'keywordapp/plain.html')
 
 # =============================== WORK ===============================
 # =============================== WORK ===============================
@@ -215,8 +215,9 @@ def CollectWorkFromDB():
 
         # If header is "หางาน" Remove it
         headerText = header.text
-        checkHeader = RemoveUnwantedHeader(headerText)
-
+        headerTextToAllLower = headerText.lower()
+        checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
+        checkWorkType = CheckWorkType(headerTextToAllLower)
         if checkHeader == 'pass':
             # Add data
             newListOfWork = ListOfWorkModel()
@@ -224,6 +225,7 @@ def CollectWorkFromDB():
             newListOfWork.header = header.text
             newListOfWork.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
             newListOfWork.content = content.text
+            newListOfWork.type = checkWorkType
             newListOfWork.save()
         else:
             pass
@@ -351,7 +353,10 @@ def CollectHouseFromDB():
 
         # If header is "หางาน" Remove it
         headerText = header.text
-        checkHeader = RemoveUnwantedHeader(headerText)
+        headerTextToAllLower = headerText.lower()
+        checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
+        checkHouseType = CheckHouseType(headerTextToAllLower)
+
         if checkHeader == 'pass':
             # Add data
             newListOfHouse = ListOfHouseModel()
@@ -359,6 +364,7 @@ def CollectHouseFromDB():
             newListOfHouse.header = header.text
             newListOfHouse.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
             newListOfHouse.content = content.text
+            newListOfHouse.type = checkHouseType
             newListOfHouse.save()
 
     driver.quit()
@@ -400,31 +406,150 @@ def RemoveUnwantedHeader(headerText):
                                         'หาห้อง',
                                         'หาบ้าน',
                                         'การบ้าน',
-                                        'รับยื่น ABN',
+                                        'รับยื่น abn',
                                         'แก้ไขฟรี',
                                         'homework',
-                                        'Homework',
                                         'essay',
                                         'สล็อต',
                                         'บาคาร่า',
                                         'รับนวด',
                                         'assignment',
                                         'assingment',
-                                        '❤️ Assignment',
-                                        'Assignment',
-                                        'Assingment',
                                         'resume',
-                                        'Resume',
                                         'วิธีดูงาน',
                                         'เรซูเม่',
                                         'รับทำ',
                                         'รับยื่น',
                                         'รับงาน',
-                                        'IELTS',
+                                        'ielts',
                                         'รับ inspect',
+                                        'หา งาน',
+                                        'รับฝาก',
+                                        'รับยืด',
+                                        'รับสอน',
+                                        'doordash',
+                                        'ไม่มีขั้นต่ำ',
+                                        'รับตัดผม',
+                                        'แจกจริง',
+                                        'รับเลี้ยง',
+                                        'หาคอร์สสอน',
+                                        'รับ ส่ง สนามบิน',
+                                        'สนุกกับเว็บไซต์',
+                                        'เว็บตรง',
+                                        'happy ending',
+                                        'ladies required',
+                                        'นวดแฝง',
+                                        'full service',
+                                        'make between $600',
                                         ]
     checkUnwanted = 'pass'
     for unwantedText in listTextUnwanted:
         if unwantedText in headerText:
             checkUnwanted = 'not pass'
     return checkUnwanted
+
+
+def CheckWorkType(headerText):
+    typeOfWork = 'other'
+    listMassageType = [
+                                    'นวด',
+                                    'Massage',
+                                        ]
+    listKitchenType = [
+                                    'ล้างจาน',
+                                    'kitchen',
+                                    'ผัด',
+                                    'เชฟ',
+                                    'มือแกง',
+                                    'อองเทร',
+                                    'salad hand',
+                                    'sandwich hand',
+                                        ]
+    listBaristaType = [
+                                    'Barista',
+                                    'cafe',
+                                    'คาเฟ่',
+                                        ]
+    listWaiterType = [
+                                    'เสริฟ',
+                                    'เสิร์ฟ',
+                                    'เสริ์ฟ',
+                                    'waiter',
+                                    'waitress',
+                                    'wait staff',
+                                        ]
+    listCleanType = [
+                                    'clean',
+                                    'คลีน',
+                                        ]
+
+    # Massage type
+    for item in listMassageType:
+        if item in headerText:
+            typeOfWork = 'massage'
+
+    # Kitchen type
+    for item in listKitchenType:
+        if item in headerText:
+            typeOfWork = 'kitchen'
+
+    # Barista type
+    for item in listBaristaType:
+        if item in headerText:
+            typeOfWork = 'barista'
+
+    # Waiter type
+    for item in listWaiterType:
+        if item in headerText:
+            typeOfWork = 'waiter'
+
+    # Clean type
+    for item in listCleanType:
+        if item in headerText:
+            typeOfWork = 'clean'
+    
+    return typeOfWork
+
+
+def CheckHouseType(headerText):
+    typeOfHouse = 'other'
+    listMasterType = [
+                                    'มาสเตอ',
+                                    'master',
+                                        ]
+    listSecondType = [
+                                    'second',
+                                    'เซกั้น',
+                                    'เชกั้น',
+                                    'เซกั่น',
+                                    'เซ็คคั่น',
+                                    'เซคคั่น',
+                                    'เซคั่น',
+                                    'เซ็นกั้น',
+                                    'เชคั่น',
+                                    'เซคั่น',
+                                        ]
+    listLivSunStuType = [
+                                    'living',
+                                    'ลิฟวิ่ง',
+                                    'ลิหวิ่ง',
+                                    'ลีฟวิ่ง',
+                                    'sunny',
+                                        ]
+
+    # Master type
+    for item in listMasterType:
+        if item in headerText:
+            typeOfHouse = 'master'
+
+    # Second type
+    for item in listSecondType:
+        if item in headerText:
+            typeOfHouse = 'second'
+
+    # LivSun type
+    for item in listLivSunStuType:
+        if item in headerText:
+            typeOfHouse = 'livsunstu'
+    
+    return typeOfHouse
