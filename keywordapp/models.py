@@ -20,7 +20,7 @@ class LinkOfWorkModel(models.Model):
     
 # ListOfWork
 class ListOfWorkModel(models.Model):
-    header = models.CharField(default='',max_length=255)
+    header = models.TextField(default='')
     date = models.DateField(blank=True)
     content = models.TextField(default='')
     type = models.CharField(default='other',max_length=255)
@@ -47,7 +47,7 @@ class LinkOfHouseModel(models.Model):
     
 # ListOfHouse
 class ListOfHouseModel(models.Model):
-    header = models.CharField(default='',max_length=255)
+    header = models.TextField(default='')
     date = models.DateField(blank=True)
     content = models.TextField(default='')
     type = models.CharField(default='other',max_length=255)

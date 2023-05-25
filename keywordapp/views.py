@@ -217,18 +217,21 @@ def CollectWorkFromDB():
         headerText = header.text
         headerTextToAllLower = headerText.lower()
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
-        checkWorkType = CheckWorkType(headerTextToAllLower)
-        if checkHeader == 'pass':
-            # Add data
-            newListOfWork = ListOfWorkModel()
-            newListOfWork.link = tempLink
-            newListOfWork.header = header.text
-            newListOfWork.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
-            newListOfWork.content = content.text
-            newListOfWork.type = checkWorkType
-            newListOfWork.save()
-        else:
-            pass
+
+        checkHouseType = CheckHouseType(headerTextToAllLower)
+        if checkHouseType == 'other':
+            checkWorkType = CheckWorkType(headerTextToAllLower)
+            if checkHeader == 'pass':
+                # Add data
+                newListOfWork = ListOfWorkModel()
+                newListOfWork.link = tempLink
+                newListOfWork.header = header.text
+                newListOfWork.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
+                newListOfWork.content = content.text
+                newListOfWork.type = checkWorkType
+                newListOfWork.save()
+            else:
+                pass
 
     driver.quit()
     return 'done'
@@ -355,17 +358,19 @@ def CollectHouseFromDB():
         headerText = header.text
         headerTextToAllLower = headerText.lower()
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
-        checkHouseType = CheckHouseType(headerTextToAllLower)
 
-        if checkHeader == 'pass':
-            # Add data
-            newListOfHouse = ListOfHouseModel()
-            newListOfHouse.link = tempLink
-            newListOfHouse.header = header.text
-            newListOfHouse.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
-            newListOfHouse.content = content.text
-            newListOfHouse.type = checkHouseType
-            newListOfHouse.save()
+        checkWorkType = CheckWorkType(headerTextToAllLower)
+        if checkWorkType == 'other':
+            checkHouseType = CheckHouseType(headerTextToAllLower)
+            if checkHeader == 'pass':
+                # Add data
+                newListOfHouse = ListOfHouseModel()
+                newListOfHouse.link = tempLink
+                newListOfHouse.header = header.text
+                newListOfHouse.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
+                newListOfHouse.content = content.text
+                newListOfHouse.type = checkHouseType
+                newListOfHouse.save()
 
     driver.quit()
 
@@ -399,6 +404,33 @@ def ConvertMonthToNumber(monthOnly):
     else:
         result = 99
     return result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def RemoveUnwantedHeader(headerText):
     listTextUnwanted = [
@@ -441,6 +473,46 @@ def RemoveUnwantedHeader(headerText):
                                         'นวดแฝง',
                                         'full service',
                                         'make between $600',
+                                        'รับแก้ผมเสีย',
+                                        'นวดเสียว',
+                                        'นวด Happy',
+                                        'รับสมัครพนักงานสาวสวย',
+                                        'รับจ้าง',
+                                        'no sex',
+                                        'City massage $600',
+                                        'รับแทนงาน',
+                                        'ทำใบขับขี่',
+                                        'ใบขับขี่ไทย ทำไว',
+                                        'รับสอบ',
+                                        'หางงาน',
+                                        'Statement',
+                                        'รับส่ง สนามบิน',
+                                        'รับส่งสนามบิน',
+                                        'รับหิ้ว',
+                                        'รับจ้าง',
+                                        'looking for a job',
+                                        'yazmin',
+                                        'yasmin',
+                                        'ฝาก-ถอน',
+                                        'ชายแท้คนไหนร้อนเงิน',
+                                        'บริการขนย้าย',
+                                        'หาคนขนของ',
+                                        'รับต่อ',
+                                        'สอบ rsa',
+                                        'rsa free',
+                                        'rsa promo',
+                                        'ต่ออายุ',
+                                        'รับแปล',
+                                        'ไวอาก้า',
+                                        'statement',
+                                        'รีเจนซี่',
+                                        'regency',
+                                        'rsa มีรีวิว',
+                                        'rsa ซื่อตรง',
+                                        'รับสอบrcg',
+                                        'รับสอบ rsa',
+                                        'หาคนสอน',
+                                        'บริการแลกเงิน',
                                         ]
     checkUnwanted = 'pass'
     for unwantedText in listTextUnwanted:
@@ -453,20 +525,24 @@ def CheckWorkType(headerText):
     typeOfWork = 'other'
     listMassageType = [
                                     'นวด',
-                                    'Massage',
+                                    'massage',
                                         ]
     listKitchenType = [
                                     'ล้างจาน',
+                                    'ครัว',
+                                    'roll maker',
                                     'kitchen',
                                     'ผัด',
                                     'เชฟ',
+                                    'เซฟ',
                                     'มือแกง',
-                                    'อองเทร',
+                                    'อองเท',
                                     'salad hand',
                                     'sandwich hand',
                                         ]
     listBaristaType = [
-                                    'Barista',
+                                    'barista',
+                                    'บาริสต้า',
                                     'cafe',
                                     'คาเฟ่',
                                         ]
@@ -523,11 +599,13 @@ def CheckHouseType(headerText):
                                     'เชกั้น',
                                     'เซกั่น',
                                     'เซ็คคั่น',
+                                    'เซคกัน',
                                     'เซคคั่น',
                                     'เซคั่น',
                                     'เซ็นกั้น',
                                     'เชคั่น',
                                     'เซคั่น',
+                                    'เซกคั่น',
                                         ]
     listLivSunStuType = [
                                     'living',
@@ -535,6 +613,9 @@ def CheckHouseType(headerText):
                                     'ลิหวิ่ง',
                                     'ลีฟวิ่ง',
                                     'sunny',
+                                    'ซันนี่',
+                                    'studio',
+                                    'สตู'
                                         ]
 
     # Master type
