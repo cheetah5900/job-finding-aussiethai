@@ -4,6 +4,7 @@ from keywordapp.views import *
 urlpatterns = [
     path('', Work, name='work'),
     path('house/', House, name='house'),
+    path('test/', testTest, name='test-test'),
     # =============== REFRESH CHECK
     path('refresh-check/',
          RefreshConditionCheck, name='refresh-page'),

@@ -10,6 +10,7 @@ from datetime import date,timedelta,datetime
 # require login to enter function
 # import model
 from keywordapp.models import *
+import re
 
 # =============================== FOR SELENIUM GET DATA ===============================
 # =============================== FOR SELENIUM GET DATA ===============================
@@ -172,9 +173,10 @@ def RefreshWork():
 
     return 'done'
 
+# def CollectWorkFromDB(request):
 def CollectWorkFromDB():
     options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
 
     #! PC
     # driver = webdriver.Chrome(options=options)
@@ -209,35 +211,50 @@ def CollectWorkFromDB():
             monthOnly = dateText[3:6]
             yearOnly = dateText[7:11]
 
-        #Convert text to number
+    # Convert text to number
         yearToInt = int(yearOnly)
         monthToInt = ConvertMonthToNumber(monthOnly)
 
-        # If header is "หางาน" Remove it
+    # If header is "หางาน" Remove it
         headerText = header.text
         headerTextToAllLower = headerText.lower()
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
+
+
+        # check if in content has a phone number change it to non-number format
+        contentText = content.text
+        lowerContentText = contentText.lower()
 
         checkHouseType = CheckHouseType(headerTextToAllLower)
         if checkHouseType == 'other':
             checkWorkType = CheckWorkType(headerTextToAllLower)
             if checkHeader == 'pass':
+
+                modifiedString = extractSpecificElements(lowerContentText)
                 # Add data
                 newListOfWork = ListOfWorkModel()
                 newListOfWork.link = tempLink
                 newListOfWork.header = header.text
                 newListOfWork.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
-                newListOfWork.content = content.text
+                newListOfWork.content = modifiedString
                 newListOfWork.type = checkWorkType
                 newListOfWork.save()
             else:
                 pass
 
-    driver.quit()
-    return 'done'
+        driver.quit()
+        return 'done'
+        # return render(request, 'keywordapp/plain.html')
 
 
-
+def testTest(request):
+        
+        contentText = "@ bannang 16.30 - 17.30 // 18.50 - 16.00 มี wwccมีประสบการณ์เลี้ยงเด็กจันทร์ - พฤหัส ว่างหลังบ่าย3ศุกร์ เสาร์ อาทิตย์ ว่างทั้งวันค่ะอยู่ sydney ค่ะtext หรือ โทรมาคุยได้ค่ะ 0412355 :: / @ am pm 10:30 pmpm 0410769990 ค่ะ"
+        lowerContentText = contentText.lower()
+        modifiedString = extractSpecificElements(lowerContentText)
+        print("modifiedString :",modifiedString)
+        print("\n")
+        return render(request, 'keywordapp/plain.html')
 # =============================== HOUSE ===============================
 # =============================== HOUSE ===============================
 # =============================== HOUSE ===============================
@@ -359,16 +376,24 @@ def CollectHouseFromDB():
         headerTextToAllLower = headerText.lower()
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
 
+
+
+        # check if in content has a phone number change it to non-number format
+        contentText = content.text
+        lowerContentText = contentText.lower()
+
         checkWorkType = CheckWorkType(headerTextToAllLower)
         if checkWorkType == 'other':
             checkHouseType = CheckHouseType(headerTextToAllLower)
             if checkHeader == 'pass':
+
+                modifiedString = extractSpecificElements(lowerContentText)
                 # Add data
                 newListOfHouse = ListOfHouseModel()
                 newListOfHouse.link = tempLink
                 newListOfHouse.header = header.text
                 newListOfHouse.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
-                newListOfHouse.content = content.text
+                newListOfHouse.content = modifiedString
                 newListOfHouse.type = checkHouseType
                 newListOfHouse.save()
 
@@ -424,10 +449,23 @@ def ConvertMonthToNumber(monthOnly):
 
 
 
+def extractSpecificElements(main_string):
+    # Step 0: List of unwanted elements
+    listOfUnwanted = r'/|:|@|com|am|pm|40|41|42|43|44|45|46|47|48|49|\.'
+    # Step 1: Identify numbers and substrings to extract
+    extracted_substrings = re.findall(listOfUnwanted, main_string)
 
+    # Step 2: Replace numbers and substrings with placeholders
+    placeholder_substring = '&substr;'
+    replaced_string = re.sub(listOfUnwanted, placeholder_substring, main_string)
+    # Step 3: Perform operations on extracted numbers and substrings
+    modified_substrings = [' &zwj;' + substring for substring in extracted_substrings]
 
+    # Step 4: Re-insert modified numbers and substrings into the main string
+    for modified_substring in modified_substrings:
+        replaced_string = replaced_string.replace(placeholder_substring, modified_substring, 1)
 
-
+    return replaced_string
 
 
 
@@ -491,6 +529,7 @@ def RemoveUnwantedHeader(headerText):
                                         'รับหิ้ว',
                                         'รับจ้าง',
                                         'looking for a job',
+                                        "I'm looking for",
                                         'yazmin',
                                         'yasmin',
                                         'ฝาก-ถอน',
@@ -513,6 +552,10 @@ def RemoveUnwantedHeader(headerText):
                                         'รับสอบ rsa',
                                         'หาคนสอน',
                                         'บริการแลกเงิน',
+                                        'รับคลีน',
+                                        'หิ้วของ',
+                                        'ต่อขนตา',
+                                        'i am looking for',
                                         ]
     checkUnwanted = 'pass'
     for unwantedText in listTextUnwanted:
@@ -539,6 +582,7 @@ def CheckWorkType(headerText):
                                     'อองเท',
                                     'salad hand',
                                     'sandwich hand',
+                                    'คิทเช่น',
                                         ]
     listBaristaType = [
                                     'barista',
@@ -592,6 +636,7 @@ def CheckHouseType(headerText):
     listMasterType = [
                                     'มาสเตอ',
                                     'master',
+                                    'maater',
                                         ]
     listSecondType = [
                                     'second',
@@ -606,6 +651,9 @@ def CheckHouseType(headerText):
                                     'เชคั่น',
                                     'เซคั่น',
                                     'เซกคั่น',
+                                    'ห้องเซค',
+                                    'ห้องเซก',
+                                    'เชคเก้น',
                                         ]
     listLivSunStuType = [
                                     'living',
