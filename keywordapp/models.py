@@ -36,14 +36,20 @@ class TempLinkOfHouseModel(models.Model):
     def __str__(self):
         return self.link
     
-    
 # LinkOfHouseModel
 class LinkOfHouseModel(models.Model):
     link = models.CharField(default='',max_length=255)
 
     def __str__(self):
         return self.link
-   
+    
+# Unwanted Text
+class KeywordList(models.Model):
+    text = models.TextField(default='')
+    type = models.TextField(default='unwanted')
+
+    def __str__(self):
+        return self.text
     
 # ListOfHouse
 class ListOfHouseModel(models.Model):

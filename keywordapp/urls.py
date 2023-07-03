@@ -5,6 +5,7 @@ urlpatterns = [
     path('', Work, name='work'),
     path('house/', House, name='house'),
     path('test/', testTest, name='test-test'),
+    path('add-unwanted-text/', AddUnwantedText),
     # =============== REFRESH CHECK
     path('refresh-check/',
          RefreshConditionCheck, name='refresh-page'),

@@ -58,7 +58,6 @@ def Work(request):
     dataForLoop = zip(headerList,dateList,contentList,linkList)
 
     context['dataForLoop'] = dataForLoop
-
     return render(request, 'keywordapp/work.html', context)
 
 
@@ -106,65 +105,63 @@ def RefreshConditionCheck(request):
 # =============================== WORK ===============================
 
 def RefreshWork():
+    for loopToCheck in range(1,6):
+        options = webdriver.ChromeOptions()
+        # options.add_argument("--headless")
+        #! PC
+        # driver = webdriver.Chrome(options=options)
+        #! MAC
+        driver = webdriver.Chrome("/Users/chaperone/Documents/GitHub/keywordmanager-python/chromedriver",options=options)
 
-    # Delete temp link before start anything
-    TempLinkOfWorkModel.objects.all().delete()
-    options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
-    #! PC
-    # driver = webdriver.Chrome(options=options)
-    #! MAC
-    driver = webdriver.Chrome("/Users/chaperone/Documents/GitHub/keywordmanager-python/chromedriver",options=options)
+        driver.get('https://sydneythai.info/jobs.php')
 
-    driver.get('https://sydneythai.info/jobs.php')
+        # if cannot find searchBoxHomePage will re-open browser
+        checkElement = True
+        while checkElement == True:
+            try:
+                WebDriverWait(driver, timeout=15).until(
+                    lambda d: d.find_element(By.CLASS_NAME, 'feature-box'))
+                checkElement = False
+            except:
+                print("Cannot find feature-box")
+                driver.quit()
+                checkElement = False
+        link = driver.find_elements(By.CSS_SELECTOR, 'div.feature-box-info > h4.shorter > a')
 
-    # if cannot find searchBoxHomePage will re-open browser
-    checkElement = True
-    while checkElement == True:
-        try:
-            WebDriverWait(driver, timeout=15).until(
-                lambda d: d.find_element(By.CLASS_NAME, 'feature-box'))
-            checkElement = False
-        except:
-            print("Cannot find feature-box")
-            driver.quit()
-            checkElement = False
-    link = driver.find_elements(By.CSS_SELECTOR, 'div.feature-box-info > h4.shorter > a')
+        # Call link of work to check extist links
+        LinkOfWork = LinkOfWorkModel.objects.all()
+        countLinkOfWork = LinkOfWork.count()
 
-    # Call link of work to check extist links
-    LinkOfWork = LinkOfWorkModel.objects.all()
-    countLinkOfWork = LinkOfWork.count()
+        newWork = 0
+        for x in link:
+            tempLink = x.get_attribute('href')
+            if countLinkOfWork == 0:
+                    # permanent link
+                    newLinkOfWork = LinkOfWorkModel()
+                    newLinkOfWork.link = tempLink
+                    newLinkOfWork.save()
+                    # temp link
+                    newLinkOfWork = TempLinkOfWorkModel()
+                    newLinkOfWork.link = tempLink
+                    newLinkOfWork.save()
+            else:
+                duplicatedCheck = 0
+                for item in LinkOfWork:
+                    if tempLink == item.link:
+                        duplicatedCheck = 1
+                # if it is not duplicate it can add to db
+                if duplicatedCheck == 0:
+                    # permanent link
+                    newLinkOfWork = LinkOfWorkModel()
+                    newLinkOfWork.link = tempLink
+                    newLinkOfWork.save()
+                    # temp link
+                    newLinkOfWork = TempLinkOfWorkModel()
+                    newLinkOfWork.link = tempLink
+                    newLinkOfWork.save()
+                    newWork += 1
 
-    newWork = 0
-    for x in link:
-        tempLink = x.get_attribute('href')
-        if countLinkOfWork == 0:
-                # permanent link
-                newLinkOfWork = LinkOfWorkModel()
-                newLinkOfWork.link = tempLink
-                newLinkOfWork.save()
-                # temp link
-                newLinkOfWork = TempLinkOfWorkModel()
-                newLinkOfWork.link = tempLink
-                newLinkOfWork.save()
-        else:
-            duplicatedCheck = 0
-            for item in LinkOfWork:
-                if tempLink == item.link:
-                    duplicatedCheck = 1
-            # if it is not duplicate it can add to db
-            if duplicatedCheck == 0:
-                # permanent link
-                newLinkOfWork = LinkOfWorkModel()
-                newLinkOfWork.link = tempLink
-                newLinkOfWork.save()
-                # temp link
-                newLinkOfWork = TempLinkOfWorkModel()
-                newLinkOfWork.link = tempLink
-                newLinkOfWork.save()
-                newWork += 1
-
-    driver.quit()
+        driver.quit()
 
     CollectWorkFromDB()
 
@@ -176,59 +173,57 @@ def RefreshWork():
 # def CollectWorkFromDB(request):
 def CollectWorkFromDB():
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
 
     #! PC
     # driver = webdriver.Chrome(options=options)
     #! MAC
     driver = webdriver.Chrome("/Users/chaperone/Documents/GitHub/keywordmanager-python/chromedriver",options=options)
-
     # Call all data for looping
     tempLinkOfWork = TempLinkOfWorkModel.objects.all()
     for x in tempLinkOfWork:
         tempLink = x.link
         driver.get(tempLink)
         try:
-            WebDriverWait(driver, timeout=5).until(
+            WebDriverWait(driver, timeout=3).until(
             lambda d: d.find_element(By.CSS_SELECTOR, '#post-content > h3'))
         except:
             print("cannot find #post-content > h3")
 
         header = driver.find_element(By.CSS_SELECTOR, '#post-content > h3')
-        date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
-        content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
 
-        dateText = date.text
-        dateOnly = dateText[0:2]
-
-        #Convert text to number to check
-        dateToInt = int(dateOnly)
-
-        if dateToInt <= 9:
-            monthOnly = dateText[2:5]
-            yearOnly = dateText[6:10]
-        else:
-            monthOnly = dateText[3:6]
-            yearOnly = dateText[7:11]
-
-    # Convert text to number
-        yearToInt = int(yearOnly)
-        monthToInt = ConvertMonthToNumber(monthOnly)
-
-    # If header is "หางาน" Remove it
+        # หลังจากได้ header มาเอามาทำเช็ค คำต้องห้าม และเป็นบ้านหรือไม่ก่อนเลย ก่อนที่จะไปเก็บข้อมูลอย่างอื่น
         headerText = header.text
         headerTextToAllLower = headerText.lower()
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
+        if checkHeader == 'pass':
+            checkHouseType = CheckHouseType(headerTextToAllLower)
+            if checkHouseType == 'other':
+                date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
+                content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
+
+                dateText = date.text
+                dateOnly = dateText[0:2]
+
+                #Convert text to number to check
+                dateToInt = int(dateOnly)
+
+                if dateToInt <= 9:
+                    monthOnly = dateText[2:5]
+                    yearOnly = dateText[6:10]
+                else:
+                    monthOnly = dateText[3:6]
+                    yearOnly = dateText[7:11]
+                # Convert text to number
+                yearToInt = int(yearOnly)
+                monthToInt = ConvertMonthToNumber(monthOnly)
 
 
-        # check if in content has a phone number change it to non-number format
-        contentText = content.text
-        lowerContentText = contentText.lower()
+                # check if in content has a phone number change it to non-number format
+                contentText = content.text
+                lowerContentText = contentText.lower()
 
-        checkHouseType = CheckHouseType(headerTextToAllLower)
-        if checkHouseType == 'other':
-            checkWorkType = CheckWorkType(headerTextToAllLower)
-            if checkHeader == 'pass':
+                checkWorkType = CheckWorkType(headerTextToAllLower)
 
                 modifiedString = extractSpecificElements(lowerContentText)
                 # Add data
@@ -239,12 +234,12 @@ def CollectWorkFromDB():
                 newListOfWork.content = modifiedString
                 newListOfWork.type = checkWorkType
                 newListOfWork.save()
-            else:
-                pass
+        else:
+            print("headerText : ",headerText)
 
-        driver.quit()
-        return 'done'
-        # return render(request, 'keywordapp/plain.html')
+    driver.quit()
+    return 'done'
+    # return render(request, 'keywordapp/plain.html')
 
 
 def testTest(request):
@@ -261,65 +256,64 @@ def testTest(request):
 
 def RefreshHouse():
 
-    # Delete temp link before start anything
-    TempLinkOfHouseModel.objects.all().delete()
-    options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
+    for loopToCheck in range(1,6):
+        options = webdriver.ChromeOptions()
+        # options.add_argument("--headless")
 
-    #! PC
-    # driver = webdriver.Chrome(options=options)
-    #! MAC
-    driver = webdriver.Chrome("/Users/chaperone/Documents/GitHub/keywordmanager-python/chromedriver",options=options)
+        #! PC
+        # driver = webdriver.Chrome(options=options)
+        #! MAC
+        driver = webdriver.Chrome("/Users/chaperone/Documents/GitHub/keywordmanager-python/chromedriver",options=options)
 
-    driver.get('https://sydneythai.info/house.php')
+        driver.get('https://sydneythai.info/house.php')
 
-    # if cannot find searchBoxHomePage will re-open browser
-    checkElement = True
-    while checkElement == True:
-        try:
-            WebDriverWait(driver, timeout=15).until(
-                lambda d: d.find_element(By.CLASS_NAME, 'feature-box'))
-            checkElement = False
-        except:
-            print("Cannot find feature-box")
-            driver.quit()
-            checkElement = False
-    link = driver.find_elements(By.CSS_SELECTOR, 'div.feature-box-info > h4.shorter > a')
+        # if cannot find searchBoxHomePage will re-open browser
+        checkElement = True
+        while checkElement == True:
+            try:
+                WebDriverWait(driver, timeout=15).until(
+                    lambda d: d.find_element(By.CLASS_NAME, 'feature-box'))
+                checkElement = False
+            except:
+                print("Cannot find feature-box")
+                driver.quit()
+                checkElement = False
+        link = driver.find_elements(By.CSS_SELECTOR, 'div.feature-box-info > h4.shorter > a')
 
-    # Call all data for checking
-    LinkOfHouse = LinkOfHouseModel.objects.all()
-    countLinkOfHouse = LinkOfHouse.count()
+        # Call all data for checking
+        LinkOfHouse = LinkOfHouseModel.objects.all()
+        countLinkOfHouse = LinkOfHouse.count()
 
-    newHouse = 0
-    for x in link:
-        tempLink = x.get_attribute('href')
-        if countLinkOfHouse == 0:
-                # permanent link
-                newLinkOfHouse = LinkOfHouseModel()
-                newLinkOfHouse.link = tempLink
-                newLinkOfHouse.save()
-                # temp link
-                newLinkOfHouse = TempLinkOfHouseModel()
-                newLinkOfHouse.link = tempLink
-                newLinkOfHouse.save()
-        else:
-            duplicatedCheck = 0
-            for item in LinkOfHouse:
-                if tempLink == item.link:
-                    duplicatedCheck = 1
-            # if it is not duplicate it can add to db
-            if duplicatedCheck == 0:
-                # permanent link
-                newLinkOfHouse = LinkOfHouseModel()
-                newLinkOfHouse.link = tempLink
-                newLinkOfHouse.save()
-                # temp link
-                newLinkOfHouse = TempLinkOfHouseModel()
-                newLinkOfHouse.link = tempLink
-                newLinkOfHouse.save()
-                newHouse += 1
+        newHouse = 0
+        for x in link:
+            tempLink = x.get_attribute('href')
+            if countLinkOfHouse == 0:
+                    # permanent link
+                    newLinkOfHouse = LinkOfHouseModel()
+                    newLinkOfHouse.link = tempLink
+                    newLinkOfHouse.save()
+                    # temp link
+                    newLinkOfHouse = TempLinkOfHouseModel()
+                    newLinkOfHouse.link = tempLink
+                    newLinkOfHouse.save()
+            else:
+                duplicatedCheck = 0
+                for item in LinkOfHouse:
+                    if tempLink == item.link:
+                        duplicatedCheck = 1
+                # if it is not duplicate it can add to db
+                if duplicatedCheck == 0:
+                    # permanent link
+                    newLinkOfHouse = LinkOfHouseModel()
+                    newLinkOfHouse.link = tempLink
+                    newLinkOfHouse.save()
+                    # temp link
+                    newLinkOfHouse = TempLinkOfHouseModel()
+                    newLinkOfHouse.link = tempLink
+                    newLinkOfHouse.save()
+                    newHouse += 1
 
-    driver.quit()
+        driver.quit()
 
     CollectHouseFromDB()
     # Delete temp link before start anything
@@ -351,41 +345,39 @@ def CollectHouseFromDB():
             print("cannot find #post-content > h3")
 
         header = driver.find_element(By.CSS_SELECTOR, '#post-content > h3')
-        date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
-        content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
 
-        dateText = date.text
-        dateOnly = dateText[0:2]
-
-        #Convert text to number to check
-        dateToInt = int(dateOnly)
-
-        if dateToInt <= 9:
-            monthOnly = dateText[2:5]
-            yearOnly = dateText[6:10]
-        else:
-            monthOnly = dateText[3:6]
-            yearOnly = dateText[7:11]
-
-        #Convert text to number
-        yearToInt = int(yearOnly)
-        monthToInt = ConvertMonthToNumber(monthOnly)
-
-        # If header is "หางาน" Remove it
+        # หลังจากได้ header มาเอามาทำเช็ค คำต้องห้าม และเป็นบ้านหรือไม่ก่อนเลย ก่อนที่จะไปเก็บข้อมูลอย่างอื่น
         headerText = header.text
         headerTextToAllLower = headerText.lower()
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
+        if checkHeader == 'pass':
+            checkWorkType = CheckWorkType(headerTextToAllLower)
+            if checkWorkType == 'other':
+                date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
+                content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
 
+                dateText = date.text
+                dateOnly = dateText[0:2]
 
+                #Convert text to number to check
+                dateToInt = int(dateOnly)
 
-        # check if in content has a phone number change it to non-number format
-        contentText = content.text
-        lowerContentText = contentText.lower()
+                if dateToInt <= 9:
+                    monthOnly = dateText[2:5]
+                    yearOnly = dateText[6:10]
+                else:
+                    monthOnly = dateText[3:6]
+                    yearOnly = dateText[7:11]
 
-        checkWorkType = CheckWorkType(headerTextToAllLower)
-        if checkWorkType == 'other':
-            checkHouseType = CheckHouseType(headerTextToAllLower)
-            if checkHeader == 'pass':
+                #Convert text to number
+                yearToInt = int(yearOnly)
+                monthToInt = ConvertMonthToNumber(monthOnly)
+
+                # check if in content has a phone number change it to non-number format
+                contentText = content.text
+                lowerContentText = contentText.lower()
+
+                checkHouseType = CheckHouseType(headerTextToAllLower)
 
                 modifiedString = extractSpecificElements(lowerContentText)
                 # Add data
@@ -431,27 +423,9 @@ def ConvertMonthToNumber(monthOnly):
     return result
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def extractSpecificElements(main_string):
     # Step 0: List of unwanted elements
-    listOfUnwanted = r'/|:|@|com|am|pm|40|41|42|43|44|45|46|47|48|49|\.'
+    listOfUnwanted = r'/|:|@|com|am|pm|40|41|42|43|44|45|46|47|48|49|-|\.'
     # Step 1: Identify numbers and substrings to extract
     extracted_substrings = re.findall(listOfUnwanted, main_string)
 
@@ -468,95 +442,26 @@ def extractSpecificElements(main_string):
     return replaced_string
 
 
+def AddUnwantedText(request):
 
+    # for x in listLivSunStuType:
+    #     newUnwantedText = KeywordList()
+    #     newUnwantedText.text = x
+    #     newUnwantedText.type = "livsunstu"
+    #     newUnwantedText.save()
+    return render (request, 'keywordapp/plain.html')
 
 def RemoveUnwantedHeader(headerText):
-    listTextUnwanted = [
-                                        'หางาน',
-                                        'หาห้อง',
-                                        'หาบ้าน',
-                                        'การบ้าน',
-                                        'รับยื่น abn',
-                                        'แก้ไขฟรี',
-                                        'homework',
-                                        'essay',
-                                        'สล็อต',
-                                        'บาคาร่า',
-                                        'รับนวด',
-                                        'assignment',
-                                        'assingment',
-                                        'resume',
-                                        'วิธีดูงาน',
-                                        'เรซูเม่',
-                                        'รับทำ',
-                                        'รับยื่น',
-                                        'รับงาน',
-                                        'ielts',
-                                        'รับ inspect',
-                                        'หา งาน',
-                                        'รับฝาก',
-                                        'รับยืด',
-                                        'รับสอน',
-                                        'doordash',
-                                        'ไม่มีขั้นต่ำ',
-                                        'รับตัดผม',
-                                        'แจกจริง',
-                                        'รับเลี้ยง',
-                                        'หาคอร์สสอน',
-                                        'รับ ส่ง สนามบิน',
-                                        'สนุกกับเว็บไซต์',
-                                        'เว็บตรง',
-                                        'happy ending',
-                                        'ladies required',
-                                        'นวดแฝง',
-                                        'full service',
-                                        'make between $600',
-                                        'รับแก้ผมเสีย',
-                                        'นวดเสียว',
-                                        'นวด Happy',
-                                        'รับสมัครพนักงานสาวสวย',
-                                        'รับจ้าง',
-                                        'no sex',
-                                        'City massage $600',
-                                        'รับแทนงาน',
-                                        'ทำใบขับขี่',
-                                        'ใบขับขี่ไทย ทำไว',
-                                        'รับสอบ',
-                                        'หางงาน',
-                                        'Statement',
-                                        'รับส่ง สนามบิน',
-                                        'รับส่งสนามบิน',
-                                        'รับหิ้ว',
-                                        'รับจ้าง',
-                                        'looking for a job',
-                                        "I'm looking for",
-                                        'yazmin',
-                                        'yasmin',
-                                        'ฝาก-ถอน',
-                                        'ชายแท้คนไหนร้อนเงิน',
-                                        'บริการขนย้าย',
-                                        'หาคนขนของ',
-                                        'รับต่อ',
-                                        'สอบ rsa',
-                                        'rsa free',
-                                        'rsa promo',
-                                        'ต่ออายุ',
-                                        'รับแปล',
-                                        'ไวอาก้า',
-                                        'statement',
-                                        'รีเจนซี่',
-                                        'regency',
-                                        'rsa มีรีวิว',
-                                        'rsa ซื่อตรง',
-                                        'รับสอบrcg',
-                                        'รับสอบ rsa',
-                                        'หาคนสอน',
-                                        'บริการแลกเงิน',
-                                        'รับคลีน',
-                                        'หิ้วของ',
-                                        'ต่อขนตา',
-                                        'i am looking for',
-                                        ]
+    listTextUnwanted = []
+    # Extract KeywordList from db
+    objectKeywordList = KeywordList.objects.filter(type="unwanted")
+    for instance in objectKeywordList:
+        # Perform actions on each instance
+        textUnwanted = instance.text
+
+        # Example: Append specific fields to a list
+        listTextUnwanted.append(textUnwanted)
+
     checkUnwanted = 'pass'
     for unwantedText in listTextUnwanted:
         if unwantedText in headerText:
@@ -566,65 +471,80 @@ def RemoveUnwantedHeader(headerText):
 
 def CheckWorkType(headerText):
     typeOfWork = 'other'
-    listMassageType = [
-                                    'นวด',
-                                    'massage',
-                                        ]
-    listKitchenType = [
-                                    'ล้างจาน',
-                                    'ครัว',
-                                    'roll maker',
-                                    'kitchen',
-                                    'ผัด',
-                                    'เชฟ',
-                                    'เซฟ',
-                                    'มือแกง',
-                                    'อองเท',
-                                    'salad hand',
-                                    'sandwich hand',
-                                    'คิทเช่น',
-                                        ]
-    listBaristaType = [
-                                    'barista',
-                                    'บาริสต้า',
-                                    'cafe',
-                                    'คาเฟ่',
-                                        ]
-    listWaiterType = [
-                                    'เสริฟ',
-                                    'เสิร์ฟ',
-                                    'เสริ์ฟ',
-                                    'waiter',
-                                    'waitress',
-                                    'wait staff',
-                                        ]
-    listCleanType = [
-                                    'clean',
-                                    'คลีน',
-                                        ]
+
+    #? Massage
+    listKeywordMassage = []
+    # Extract KeywordMassageList from db
+    objectKeywordMassageList = KeywordList.objects.filter(type="massage")
+    for instance in objectKeywordMassageList:
+        # Perform actions on each instance
+        keywordMassage = instance.text
+        # Example: Append specific fields to a list
+        listKeywordMassage.append(keywordMassage)
+
+    #? Kitchen
+    listKeywordKitchen = []
+    # Extract KeywordKitchenList from db
+    objectKeywordKitchenList = KeywordList.objects.filter(type="kitchen")
+    for instance in objectKeywordKitchenList:
+        # Perform actions on each instance
+        keywordKitchen = instance.text
+        # Example: Append specific fields to a list
+        listKeywordKitchen.append(keywordKitchen)
+
+    #? Barista
+    listKeywordBarista = []
+    # Extract KeywordBaristaList from db
+    objectKeywordBaristaList = KeywordList.objects.filter(type="barista")
+    for instance in objectKeywordBaristaList:
+        # Perform actions on each instance
+        keywordBarista = instance.text
+        # Example: Append specific fields to a list
+        listKeywordBarista.append(keywordBarista)
+
+    #? Waiter
+    listKeywordWaiter = []
+    # Extract KeywordWaiterList from db
+    objectKeywordWaiterList = KeywordList.objects.filter(type="waiter")
+    for instance in objectKeywordWaiterList:
+        # Perform actions on each instance
+        keywordWaiter = instance.text
+        # Example: Append specific fields to a list
+        listKeywordWaiter.append(keywordWaiter)
+
+    #? Clean
+    listKeywordClean = []
+    # Extract KeywordCleanList from db
+    objectKeywordCleanList = KeywordList.objects.filter(type="clean")
+    for instance in objectKeywordCleanList:
+        # Perform actions on each instance
+        keywordClean = instance.text
+        # Example: Append specific fields to a list
+        listKeywordClean.append(keywordClean)
+
 
     # Massage type
-    for item in listMassageType:
+    for item in listKeywordMassage:
         if item in headerText:
             typeOfWork = 'massage'
 
     # Kitchen type
-    for item in listKitchenType:
+    for item in listKeywordKitchen:
         if item in headerText:
             typeOfWork = 'kitchen'
 
     # Barista type
-    for item in listBaristaType:
+    for item in listKeywordBarista:
         if item in headerText:
             typeOfWork = 'barista'
 
     # Waiter type
-    for item in listWaiterType:
+    for item in listKeywordWaiter:
         if item in headerText:
             typeOfWork = 'waiter'
 
     # Clean type
-    for item in listCleanType:
+    for item in listKeywordClean:
         if item in headerText:
             typeOfWork = 'clean'
     
@@ -633,51 +553,49 @@ def CheckWorkType(headerText):
 
 def CheckHouseType(headerText):
     typeOfHouse = 'other'
-    listMasterType = [
-                                    'มาสเตอ',
-                                    'master',
-                                    'maater',
-                                        ]
-    listSecondType = [
-                                    'second',
-                                    'เซกั้น',
-                                    'เชกั้น',
-                                    'เซกั่น',
-                                    'เซ็คคั่น',
-                                    'เซคกัน',
-                                    'เซคคั่น',
-                                    'เซคั่น',
-                                    'เซ็นกั้น',
-                                    'เชคั่น',
-                                    'เซคั่น',
-                                    'เซกคั่น',
-                                    'ห้องเซค',
-                                    'ห้องเซก',
-                                    'เชคเก้น',
-                                        ]
-    listLivSunStuType = [
-                                    'living',
-                                    'ลิฟวิ่ง',
-                                    'ลิหวิ่ง',
-                                    'ลีฟวิ่ง',
-                                    'sunny',
-                                    'ซันนี่',
-                                    'studio',
-                                    'สตู'
-                                        ]
+
+    #? Master
+    listKeywordMaster = []
+    # Extract KeywordMasterList from db
+    objectKeywordMasterList = KeywordList.objects.filter(type="master")
+    for instance in objectKeywordMasterList:
+        # Perform actions on each instance
+        keywordMaster = instance.text
+        # Example: Append specific fields to a list
+        listKeywordMaster.append(keywordMaster)
+
+    #? Second
+    listKeywordSecond = []
+    # Extract KeywordSecondList from db
+    objectKeywordSecondList = KeywordList.objects.filter(type="second")
+    for instance in objectKeywordSecondList:
+        # Perform actions on each instance
+        keywordSecond = instance.text
+        # Example: Append specific fields to a list
+        listKeywordSecond.append(keywordSecond)
+
+    #? LivSunStu
+    listKeywordLivSunStu = []
+    # Extract KeywordLivSunStuList from db
+    objectKeywordLivSunStuList = KeywordList.objects.filter(type="livsunstu")
+    for instance in objectKeywordLivSunStuList:
+        # Perform actions on each instance
+        keywordLivSunStu = instance.text
+        # Example: Append specific fields to a list
+        listKeywordLivSunStu.append(keywordLivSunStu)
 
     # Master type
-    for item in listMasterType:
+    for item in listKeywordMaster:
         if item in headerText:
             typeOfHouse = 'master'
 
     # Second type
-    for item in listSecondType:
+    for item in listKeywordSecond:
         if item in headerText:
             typeOfHouse = 'second'
 
     # LivSun type
-    for item in listLivSunStuType:
+    for item in listKeywordLivSunStu:
         if item in headerText:
             typeOfHouse = 'livsunstu'
     
