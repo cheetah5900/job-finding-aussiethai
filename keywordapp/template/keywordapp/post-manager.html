@@ -1,0 +1,56 @@
+{%extends 'keywordapp/layout.html'%}
+{%block activework%}active{%endblock activework%}
+{%block content%}
+<div class="page-content-wrapper">
+  <!-- Weekly Best Sellers-->
+  <div class="weekly-best-seller-area py-3">
+    <div class="container">
+      <div class="section-heading">
+        <h2>จัดการ Post</h2>
+      </div>
+    <div class="row g-3">
+      <div class="col-6">
+        <div class="card weekly-product-card">
+          <div class="card-body align-items-center">
+            <h3>งาน</h3>
+            <table class="table">
+              <tr>
+                <td>หัวข้อ</td>
+                <td>ลบ</td>
+              </tr>
+              {%for item in objectWorkList%}
+              <tr>
+                <td>{{item.header}}</td>
+                <td>
+                  <a class="btn btn-danger" href="/del-post-work/{{item.id}}">ลบ</a></td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card weekly-product-card">
+          <div class="card-body align-items-center">
+            <h3>บ้าน</h3>
+            <table class="table">
+              <tr>
+                <td>หัวข้อ</td>
+                <td>ลบ</td>
+              </tr>
+              {%for item in objectHouseList%}
+              <tr>
+                <td>{{item.header}}</td>
+                <td>
+                  <a class="btn btn-danger" href="/del-post-house/{{item.id}}">ลบ</a></td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+{%endblock content%}

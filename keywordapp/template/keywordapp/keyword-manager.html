@@ -1,0 +1,62 @@
+{%extends 'keywordapp/layout.html'%}
+{%block activework%}active{%endblock activework%}
+{%block content%}
+<div class="page-content-wrapper">
+  <!-- Weekly Best Sellers-->
+  <div class="weekly-best-seller-area py-3">
+    <div class="container">
+      <div class="section-heading">
+        <h2>จัดการ Keyword</h2>
+      </div>
+      <div class="row g-3 mb-5">
+        <div class="col-12">
+
+          <form method="post">
+            {%csrf_token%}
+              <div class="card weekly-product-card">
+                <div class="card-body align-items-center justify-content-center d-flex">
+                  <input type="text" class="form-control" name="keyword">
+                  <select name="type" id="" class="form-control">
+                    <option value="unwanted">Unwanted</option>
+                    <option value="massage">Massage</option>
+                    <option value="kitchen">Kitchen</option>
+                    <option value="waiter">Waiter</option>
+                    <option value="clean">Clean</option>
+                    <option value="master">Master</option>
+                    <option value="second">Second</option>
+                    <option value="livesunstu">LivSunStu</option>
+                  </select>
+                  <button class="btn btn-primary btn-lg" target="_blank">เพิ่ม</button>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    <div class="row g-3">
+      <div class="col-12">
+        <div class="card weekly-product-card">
+          <div class="card-body align-items-center">
+            <table class="table">
+              <tr>
+                <td>คำ</td>
+                <td>ประเภท</td>
+                <td>ลบ</td>
+              </tr>
+              {%for item in objectKeywordList%}
+              <tr>
+                <td>{{item.text}}</td>
+                <td>{{item.type}}</td>
+                <td>
+                  <a class="btn btn-danger" href="/del-keyword/{{item.id}}">ลบ</a></td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{%endblock content%}

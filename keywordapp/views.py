@@ -442,14 +442,47 @@ def extractSpecificElements(main_string):
     return replaced_string
 
 
-def AddUnwantedText(request):
+def KeywordManager(request):
 
-    # for x in listLivSunStuType:
-    #     newUnwantedText = KeywordList()
-    #     newUnwantedText.text = x
-    #     newUnwantedText.type = "livsunstu"
-    #     newUnwantedText.save()
-    return render (request, 'keywordapp/plain.html')
+    context = {}
+    objectKeywordList = KeywordList.objects.all()
+    context['objectKeywordList'] = objectKeywordList
+
+    if request.method == 'POST':
+        data = request.POST.copy()
+        keyword = data.get('keyword')
+        type = data.get('type')
+        newKeyword = KeywordList()
+        newKeyword.text = keyword
+        newKeyword.type = type
+        newKeyword.save()
+    return render (request, 'keywordapp/keyword-manager.html',context)
+
+
+def PostManager(request):
+
+    context = {}
+    objectWorkList = ListOfWorkModel.objects.all()
+    objectHouseList = ListOfHouseModel.objects.all()
+    context['objectWorkList'] = objectWorkList
+    context['objectHouseList'] = objectHouseList
+
+    return render (request, 'keywordapp/post-manager.html',context)
+
+def DeleteKeyword(request,pk):
+    objectKeywordList = KeywordList.objects.get(id=pk)
+    objectKeywordList.delete()
+    return redirect('keyword-manager')
+
+def DeletePostWork(request,pk):
+    objectWorkList = ListOfWorkModel.objects.get(id=pk)
+    objectWorkList.delete()
+    return redirect('post-manager')
+
+def DeletePostHouse(request,pk):
+    objectHouseList = ListOfHouseModel.objects.get(id=pk)
+    objectHouseList.delete()
+    return redirect('post-manager')
 
 def RemoveUnwantedHeader(headerText):
     listTextUnwanted = []

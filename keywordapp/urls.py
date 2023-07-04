@@ -5,7 +5,11 @@ urlpatterns = [
     path('', Work, name='work'),
     path('house/', House, name='house'),
     path('test/', testTest, name='test-test'),
-    path('add-unwanted-text/', AddUnwantedText),
+    path('keyword-manager/', KeywordManager, name='keyword-manager'),
+    path('post-manager/', PostManager, name='post-manager'),
+    path('del-keyword/<int:pk>/', DeleteKeyword),
+    path('del-post-work/<int:pk>/', DeletePostWork),
+    path('del-post-house/<int:pk>/', DeletePostHouse),
     # =============== REFRESH CHECK
     path('refresh-check/',
          RefreshConditionCheck, name='refresh-page'),
