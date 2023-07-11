@@ -242,18 +242,6 @@ def CollectWorkFromDB():
     # return render(request, 'keywordapp/plain.html')
 
 
-def testTest(request):
-        
-        contentText = "@ bannang 16.30 - 17.30 // 18.50 - 16.00 มี wwccมีประสบการณ์เลี้ยงเด็กจันทร์ - พฤหัส ว่างหลังบ่าย3ศุกร์ เสาร์ อาทิตย์ ว่างทั้งวันค่ะอยู่ sydney ค่ะtext หรือ โทรมาคุยได้ค่ะ 0412355 :: / @ am pm 10:30 pmpm 0410769990 ค่ะ"
-        lowerContentText = contentText.lower()
-        modifiedString = extractSpecificElements(lowerContentText)
-        print("modifiedString :",modifiedString)
-        print("\n")
-        return render(request, 'keywordapp/plain.html')
-# =============================== HOUSE ===============================
-# =============================== HOUSE ===============================
-# =============================== HOUSE ===============================
-
 def RefreshHouse():
 
     for loopToCheck in range(1,6):
@@ -468,6 +456,39 @@ def PostManager(request):
     context['objectHouseList'] = objectHouseList
 
     return render (request, 'keywordapp/post-manager.html',context)
+
+def AutoPromote(request):
+    options = webdriver.ChromeOptions()
+
+    #! PC
+    # driver = webdriver.Chrome(options=options)
+    #! MAC
+    driver = webdriver.Chrome("/Users/chaperone/Documents/GitHub/keywordmanager-python/chromedriver",options=options)
+    
+    driver.get('https://sydneythai.info/login.php')
+    try:
+        WebDriverWait(driver, timeout=3).until(
+        lambda d: d.find_element(By.CSS_SELECTOR, '#email'))
+    except:
+        print("cannot find #email")
+
+    email = driver.find_element(By.CSS_SELECTOR, '#email')
+    password = driver.find_element(By.CSS_SELECTOR, '#password')
+    submit = driver.find_element(By.CSS_SELECTOR, '#submit')
+
+    email.send_keys('cheetah5900@windowslive.com')
+    password.send_keys('0853166969')
+    submit.click()
+
+    topic = driver.find_element(By.CSS_SELECTOR, '#topic')
+    body = driver.find_element(By.CSS_SELECTOR, '#body')
+    submit = driver.find_element(By.CSS_SELECTOR, '#submit')
+
+    topic.send_keys('วิธีดูงาน/บ้านในแอพ SydneyThai แบบเรียงตามวันที่')
+    body.send_keys('ให้เข้าไปที่เว็บ https://aussiethai.net ในเว็บจะเรียงวันที่ล่าสุดขึ้นมาก่อน และจะตัดโพสต์ที่ไม่สำคัญออก')
+    submit.click()
+
+    return render (request, 'keywordapp/plain.html')
 
 def DeleteKeyword(request,pk):
     objectKeywordList = KeywordList.objects.get(id=pk)
