@@ -79,23 +79,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'betmanager.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'aussiethai',
-#         'USER': 'office_mainuser',
-#         'PASSWORD': 'io00r6&1H',
-#         'HOST': '119.59.100.52',
-#         'PORT': '3306',
-#         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aussiethai',
+        'USER': 'office_mainuser',
+        'PASSWORD': 'io00r6&1H',
+        'HOST': '119.59.100.52',
+        'PORT': '3306',
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation

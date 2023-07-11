@@ -36,6 +36,13 @@ class TempLinkOfHouseModel(models.Model):
     def __str__(self):
         return self.link
     
+# Page count
+class PageCountModel(models.Model):
+    count = models.IntegerField()
+
+    def __str__(self):
+        return self.count
+    
 # LinkOfHouseModel
 class LinkOfHouseModel(models.Model):
     link = models.CharField(default='',max_length=255)
