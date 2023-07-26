@@ -195,45 +195,50 @@ def CollectWorkFromDB():
         # หลังจากได้ header มาเอามาทำเช็ค คำต้องห้าม และเป็นบ้านหรือไม่ก่อนเลย ก่อนที่จะไปเก็บข้อมูลอย่างอื่น
         headerText = header.text
         headerTextToAllLower = headerText.lower()
+        contentText = content.text
+        contentTextToAllLower = contentText.lower()
+
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
         if checkHeader == 'pass':
             checkHouseType = CheckHouseType(headerTextToAllLower)
             if checkHouseType == 'other':
-                date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
-                content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
+                checkContent = RemoveUnwantedContent(contentTextToAllLower)
+                if checkContent == 'pass':
+                    date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
+                    content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
 
-                dateText = date.text
-                dateOnly = dateText[0:2]
+                    dateText = date.text
+                    dateOnly = dateText[0:2]
 
-                #Convert text to number to check
-                dateToInt = int(dateOnly)
+                    #Convert text to number to check
+                    dateToInt = int(dateOnly)
 
-                if dateToInt <= 9:
-                    monthOnly = dateText[2:5]
-                    yearOnly = dateText[6:10]
-                else:
-                    monthOnly = dateText[3:6]
-                    yearOnly = dateText[7:11]
-                # Convert text to number
-                yearToInt = int(yearOnly)
-                monthToInt = ConvertMonthToNumber(monthOnly)
+                    if dateToInt <= 9:
+                        monthOnly = dateText[2:5]
+                        yearOnly = dateText[6:10]
+                    else:
+                        monthOnly = dateText[3:6]
+                        yearOnly = dateText[7:11]
+                    # Convert text to number
+                    yearToInt = int(yearOnly)
+                    monthToInt = ConvertMonthToNumber(monthOnly)
 
 
-                # check if in content has a phone number change it to non-number format
-                contentText = content.text
-                lowerContentText = contentText.lower()
+                    # check if in content has a phone number change it to non-number format
+                    contentText = content.text
+                    lowerContentText = contentText.lower()
 
-                checkWorkType = CheckWorkType(headerTextToAllLower)
+                    checkWorkType = CheckWorkType(headerTextToAllLower)
 
-                modifiedString = extractSpecificElements(lowerContentText)
-                # Add data
-                newListOfWork = ListOfWorkModel()
-                newListOfWork.link = tempLink
-                newListOfWork.header = header.text
-                newListOfWork.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
-                newListOfWork.content = modifiedString
-                newListOfWork.type = checkWorkType
-                newListOfWork.save()
+                    # modifiedString = extractSpecificElements(lowerContentText)
+                    # Add data
+                    newListOfWork = ListOfWorkModel()
+                    newListOfWork.link = tempLink
+                    newListOfWork.header = header.text
+                    newListOfWork.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
+                    newListOfWork.content = lowerContentText
+                    newListOfWork.type = checkWorkType
+                    newListOfWork.save()
         else:
             print("headerText : ",headerText)
 
@@ -337,45 +342,50 @@ def CollectHouseFromDB():
         # หลังจากได้ header มาเอามาทำเช็ค คำต้องห้าม และเป็นบ้านหรือไม่ก่อนเลย ก่อนที่จะไปเก็บข้อมูลอย่างอื่น
         headerText = header.text
         headerTextToAllLower = headerText.lower()
+        contentText = content.text
+        contentTextToAllLower = contentText.lower()
+
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
         if checkHeader == 'pass':
             checkWorkType = CheckWorkType(headerTextToAllLower)
             if checkWorkType == 'other':
-                date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
-                content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
+                checkContent = RemoveUnwantedContent(contentTextToAllLower)
+                if checkContent == 'pass':
+                    date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
+                    content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
 
-                dateText = date.text
-                dateOnly = dateText[0:2]
+                    dateText = date.text
+                    dateOnly = dateText[0:2]
 
-                #Convert text to number to check
-                dateToInt = int(dateOnly)
+                    #Convert text to number to check
+                    dateToInt = int(dateOnly)
 
-                if dateToInt <= 9:
-                    monthOnly = dateText[2:5]
-                    yearOnly = dateText[6:10]
-                else:
-                    monthOnly = dateText[3:6]
-                    yearOnly = dateText[7:11]
+                    if dateToInt <= 9:
+                        monthOnly = dateText[2:5]
+                        yearOnly = dateText[6:10]
+                    else:
+                        monthOnly = dateText[3:6]
+                        yearOnly = dateText[7:11]
 
-                #Convert text to number
-                yearToInt = int(yearOnly)
-                monthToInt = ConvertMonthToNumber(monthOnly)
+                    #Convert text to number
+                    yearToInt = int(yearOnly)
+                    monthToInt = ConvertMonthToNumber(monthOnly)
 
-                # check if in content has a phone number change it to non-number format
-                contentText = content.text
-                lowerContentText = contentText.lower()
+                    # check if in content has a phone number change it to non-number format
+                    contentText = content.text
+                    lowerContentText = contentText.lower()
 
-                checkHouseType = CheckHouseType(headerTextToAllLower)
+                    checkHouseType = CheckHouseType(headerTextToAllLower)
 
-                modifiedString = extractSpecificElements(lowerContentText)
-                # Add data
-                newListOfHouse = ListOfHouseModel()
-                newListOfHouse.link = tempLink
-                newListOfHouse.header = header.text
-                newListOfHouse.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
-                newListOfHouse.content = modifiedString
-                newListOfHouse.type = checkHouseType
-                newListOfHouse.save()
+                    # modifiedString = extractSpecificElements(lowerContentText)
+                    # Add data
+                    newListOfHouse = ListOfHouseModel()
+                    newListOfHouse.link = tempLink
+                    newListOfHouse.header = header.text
+                    newListOfHouse.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
+                    newListOfHouse.content = lowerContentText
+                    newListOfHouse.type = checkHouseType
+                    newListOfHouse.save()
 
     driver.quit()
 
@@ -411,23 +421,23 @@ def ConvertMonthToNumber(monthOnly):
     return result
 
 
-def extractSpecificElements(main_string):
-    # Step 0: List of unwanted elements
-    listOfUnwanted = r'/|:|@|com|am|pm|40|41|42|43|44|45|46|47|48|49|-|\.'
-    # Step 1: Identify numbers and substrings to extract
-    extracted_substrings = re.findall(listOfUnwanted, main_string)
+# def extractSpecificElements(main_string):
+#     # Step 0: List of unwanted elements
+#     listOfUnwanted = r'/|:|@|com|am|pm|40|41|42|43|44|45|46|47|48|49|-|\.'
+#     # Step 1: Identify numbers and substrings to extract
+#     extracted_substrings = re.findall(listOfUnwanted, main_string)
 
-    # Step 2: Replace numbers and substrings with placeholders
-    placeholder_substring = '&substr;'
-    replaced_string = re.sub(listOfUnwanted, placeholder_substring, main_string)
-    # Step 3: Perform operations on extracted numbers and substrings
-    modified_substrings = [' &zwj;' + substring for substring in extracted_substrings]
+#     # Step 2: Replace numbers and substrings with placeholders
+#     placeholder_substring = '&substr;'
+#     replaced_string = re.sub(listOfUnwanted, placeholder_substring, main_string)
+#     # Step 3: Perform operations on extracted numbers and substrings
+#     modified_substrings = [' &zwj;' + substring for substring in extracted_substrings]
 
-    # Step 4: Re-insert modified numbers and substrings into the main string
-    for modified_substring in modified_substrings:
-        replaced_string = replaced_string.replace(placeholder_substring, modified_substring, 1)
+#     # Step 4: Re-insert modified numbers and substrings into the main string
+#     for modified_substring in modified_substrings:
+#         replaced_string = replaced_string.replace(placeholder_substring, modified_substring, 1)
 
-    return replaced_string
+#     return replaced_string
 
 
 def KeywordManager(request):
@@ -522,6 +532,23 @@ def RemoveUnwantedHeader(headerText):
             checkUnwanted = 'not pass'
     return checkUnwanted
 
+
+def RemoveUnwantedContent(contentText):
+    listTextUnwanted = []
+    # Extract KeywordList from db
+    objectKeywordList = KeywordList.objects.filter(type="unwanted_content")
+    for instance in objectKeywordList:
+        # Perform actions on each instance
+        textUnwanted = instance.text
+
+        # Example: Append specific fields to a list
+        listTextUnwanted.append(textUnwanted)
+
+    checkUnwanted = 'pass'
+    for unwantedText in listTextUnwanted:
+        if unwantedText in contentText:
+            checkUnwanted = 'not pass'
+    return checkUnwanted
 
 def CheckWorkType(headerText):
     typeOfWork = 'other'
