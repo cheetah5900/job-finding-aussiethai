@@ -195,17 +195,17 @@ def CollectWorkFromDB():
         # หลังจากได้ header มาเอามาทำเช็ค คำต้องห้าม และเป็นบ้านหรือไม่ก่อนเลย ก่อนที่จะไปเก็บข้อมูลอย่างอื่น
         headerText = header.text
         headerTextToAllLower = headerText.lower()
-        contentText = content.text
-        contentTextToAllLower = contentText.lower()
 
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
         if checkHeader == 'pass':
             checkHouseType = CheckHouseType(headerTextToAllLower)
             if checkHouseType == 'other':
+                content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
+                contentText = content.text
+                contentTextToAllLower = contentText.lower()
                 checkContent = RemoveUnwantedContent(contentTextToAllLower)
                 if checkContent == 'pass':
                     date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
-                    content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
 
                     dateText = date.text
                     dateOnly = dateText[0:2]
@@ -342,13 +342,14 @@ def CollectHouseFromDB():
         # หลังจากได้ header มาเอามาทำเช็ค คำต้องห้าม และเป็นบ้านหรือไม่ก่อนเลย ก่อนที่จะไปเก็บข้อมูลอย่างอื่น
         headerText = header.text
         headerTextToAllLower = headerText.lower()
-        contentText = content.text
-        contentTextToAllLower = contentText.lower()
 
         checkHeader = RemoveUnwantedHeader(headerTextToAllLower)
         if checkHeader == 'pass':
             checkWorkType = CheckWorkType(headerTextToAllLower)
             if checkWorkType == 'other':
+                content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
+                contentText = content.text
+                contentTextToAllLower = contentText.lower()
                 checkContent = RemoveUnwantedContent(contentTextToAllLower)
                 if checkContent == 'pass':
                     date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
