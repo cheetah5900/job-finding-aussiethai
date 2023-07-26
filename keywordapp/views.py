@@ -219,26 +219,28 @@ def CollectWorkFromDB():
                     else:
                         monthOnly = dateText[3:6]
                         yearOnly = dateText[7:11]
-                    # Convert text to number
-                    yearToInt = int(yearOnly)
-                    monthToInt = ConvertMonthToNumber(monthOnly)
+                    # If Year = 1970, don't put into database
+                    if yearOnly != "1970":
+                        # Convert text to number
+                        yearToInt = int(yearOnly)
+                        monthToInt = ConvertMonthToNumber(monthOnly)
 
 
-                    # check if in content has a phone number change it to non-number format
-                    contentText = content.text
-                    lowerContentText = contentText.lower()
+                        # check if in content has a phone number change it to non-number format
+                        contentText = content.text
+                        lowerContentText = contentText.lower()
 
-                    checkWorkType = CheckWorkType(headerTextToAllLower)
+                        checkWorkType = CheckWorkType(headerTextToAllLower)
 
-                    # modifiedString = extractSpecificElements(lowerContentText)
-                    # Add data
-                    newListOfWork = ListOfWorkModel()
-                    newListOfWork.link = tempLink
-                    newListOfWork.header = header.text
-                    newListOfWork.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
-                    newListOfWork.content = lowerContentText
-                    newListOfWork.type = checkWorkType
-                    newListOfWork.save()
+                        # modifiedString = extractSpecificElements(lowerContentText)
+                        # Add data
+                        newListOfWork = ListOfWorkModel()
+                        newListOfWork.link = tempLink
+                        newListOfWork.header = header.text
+                        newListOfWork.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
+                        newListOfWork.content = lowerContentText
+                        newListOfWork.type = checkWorkType
+                        newListOfWork.save()
         else:
             print("headerText : ",headerText)
 
@@ -353,7 +355,6 @@ def CollectHouseFromDB():
                 checkContent = RemoveUnwantedContent(contentTextToAllLower)
                 if checkContent == 'pass':
                     date = driver.find_element(By.CSS_SELECTOR, '#post-content > h3 + p')
-                    content = driver.find_element(By.CSS_SELECTOR, '#post-content > p.post-body')
 
                     dateText = date.text
                     dateOnly = dateText[0:2]
@@ -367,26 +368,27 @@ def CollectHouseFromDB():
                     else:
                         monthOnly = dateText[3:6]
                         yearOnly = dateText[7:11]
+                    # If Year = 1970, don't put into database
+                    if yearOnly != "1970":
+                        #Convert text to number
+                        yearToInt = int(yearOnly)
+                        monthToInt = ConvertMonthToNumber(monthOnly)
 
-                    #Convert text to number
-                    yearToInt = int(yearOnly)
-                    monthToInt = ConvertMonthToNumber(monthOnly)
+                        # check if in content has a phone number change it to non-number format
+                        contentText = content.text
+                        lowerContentText = contentText.lower()
 
-                    # check if in content has a phone number change it to non-number format
-                    contentText = content.text
-                    lowerContentText = contentText.lower()
+                        checkHouseType = CheckHouseType(headerTextToAllLower)
 
-                    checkHouseType = CheckHouseType(headerTextToAllLower)
-
-                    # modifiedString = extractSpecificElements(lowerContentText)
-                    # Add data
-                    newListOfHouse = ListOfHouseModel()
-                    newListOfHouse.link = tempLink
-                    newListOfHouse.header = header.text
-                    newListOfHouse.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
-                    newListOfHouse.content = lowerContentText
-                    newListOfHouse.type = checkHouseType
-                    newListOfHouse.save()
+                        # modifiedString = extractSpecificElements(lowerContentText)
+                        # Add data
+                        newListOfHouse = ListOfHouseModel()
+                        newListOfHouse.link = tempLink
+                        newListOfHouse.header = header.text
+                        newListOfHouse.date = "{}-{}-{}".format(yearToInt,monthToInt,dateToInt)
+                        newListOfHouse.content = lowerContentText
+                        newListOfHouse.type = checkHouseType
+                        newListOfHouse.save()
 
     driver.quit()
 
