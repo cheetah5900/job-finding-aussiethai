@@ -1,9 +1,12 @@
-# Keyword manager for SEO project
+# web scraping Job finding site
 
 ## Background
-I create this web application to help me finding keyword from Google for doing SEO. it can find Longtail, Refine and Related keyword from Google in real-time. I use web scraping named "Selenium" (Python).
 
-Furthermore, it can manage keyword for doing SEO from defining Title to writing footer content.
+### What is this for ?
+This website was made for helping Thai people who live in Sydney, Australia to find a Thai job easier by removing useless posts and order by latest date.
+
+### Why do this ?
+I was studying in Sydney, Australia. In the meantime, I needed to find a job, but in the SydneyThai website, which was a job finding site for Thai people in Australia, is contaminated useless posts around 80%. In addition to the disadvantage, it didn't order by date. Hence, looking for an updated job is almost impossible. I couldn't find a job for myself, so I decided to created this system to scrap all posts, then filter useless posts out. After using for a month, I decided to publish to public at https://aussiethai.net
 
 ## Technology
 - Python
@@ -37,14 +40,9 @@ Furthermore, it can manage keyword for doing SEO from defining Title to writing 
 
 ### Step 5 : Login to web app
 1. Open new tab browser
-2. Go to `localhost:8000`
-3. Login as root
- - username : cheetah
- - password : cheetah
-
+2. Go to `localhost:8000` to see posts
+3. Go to `localhost:8000/refresh-check` to refresh jobs to the system.
+   
 ## How to use
-- First navigation is finding keyword. You can put any keyword in input box. System will provide keyword from Google for you
-- Second navigation is manage keyword. it is a little bit complicated to describe because I designed it for only myself.
-- Third navigation is Permission for each user.
-- Fourth and Fifth navigation are not complete right now.
+- Looking for a job in Home page.
 
